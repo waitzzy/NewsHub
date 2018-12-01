@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.newshub.dao.CommentMapper" >
+  <resultMap id="BaseResultMap" type="com.newshub.pojo.Comment" >
+    <constructor >
+      <idArg column="commentID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="newsID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.newshub.pojo.Comment" >
+    <constructor >
+      <idArg column="commentID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="newsID" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="commentContent" jdbcType="LONGVARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    commentID, newsID, create_time, update_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    commentContent
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from comments
+    where commentID = #{commentid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from comments
+    where commentID = #{commentid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.newshub.pojo.Comment" >
+    insert into comments (commentID, newsID, create_time, 
+      update_time, commentContent)
+    values (#{commentid,jdbcType=INTEGER}, #{newsid,jdbcType=INTEGER}, now(),
+      now(), #{commentcontent,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.newshub.pojo.Comment" >
+    insert into comments
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="commentid != null" >
+        commentID,
+      </if>
+      <if test="newsid != null" >
+        newsID,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="commentcontent != null" >
+        commentContent,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="commentid != null" >
+        #{commentid,jdbcType=INTEGER},
+      </if>
+      <if test="newsid != null" >
+        #{newsid,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        now(),
+      </if>
+      <if test="updateTime != null" >
+        now(),
+      </if>
+      <if test="commentcontent != null" >
+        #{commentcontent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.newshub.pojo.Comment" >
+    update comments
+    <set >
+      <if test="newsid != null" >
+        newsID = #{newsid,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = now(),
+      </if>
+      <if test="commentcontent != null" >
+        commentContent = #{commentcontent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where commentID = #{commentid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.newshub.pojo.Comment" >
+    update comments
+    set newsID = #{newsid,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = now(),
+      commentContent = #{commentcontent,jdbcType=LONGVARCHAR}
+    where commentID = #{commentid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.newshub.pojo.Comment" >
+    update comments
+    set newsID = #{newsid,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = now()
+    where commentID = #{commentid,jdbcType=INTEGER}
+  </update>
+</mapper>
