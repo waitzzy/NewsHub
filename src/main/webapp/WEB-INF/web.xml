@@ -37,16 +37,19 @@
       classpath:applicationContext.xml
     </param-value>
   </context-param>
+  
+  <welcome-file-list>
+    <welcome-file>/views/title.jsp</welcome-file>
+  </welcome-file-list>
 
   <servlet>
     <servlet-name>dispatcher</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
     <load-on-startup>1</load-on-startup>
   </servlet>
-
   <servlet-mapping>
     <servlet-name>dispatcher</servlet-name>
-    <url-pattern>*.do</url-pattern>
+    <url-pattern>/</url-pattern>
   </servlet-mapping>
 
 </web-app>
