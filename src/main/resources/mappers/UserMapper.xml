@@ -8,12 +8,12 @@
       <arg column="password" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="loginTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
       <arg column="userType" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
-      <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="updateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List" >
-    userID, username, password, loginTime, userType, create_time, update_time
+    userID, username, password, loginTime, userType, createTime, updateTime
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -27,11 +27,11 @@
   </delete>
   <insert id="insert" parameterType="com.newshub.pojo.User" >
     insert into user (userID, username, password, 
-      loginTime, userType, create_time, 
-      update_time)
+      loginTime, userType, createTime, 
+      updateTime)
     values (#{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{logintime,jdbcType=TIMESTAMP}, #{usertype,jdbcType=VARCHAR}, now(),
-      now())
+      #{logintime,jdbcType=TIMESTAMP}, #{usertype,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{updatetime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.newshub.pojo.User" >
     insert into user
@@ -51,11 +51,11 @@
       <if test="usertype != null" >
         userType,
       </if>
-      <if test="createTime != null" >
-        create_time,
+      <if test="createtime != null" >
+        createTime,
       </if>
-      <if test="updateTime != null" >
-        update_time,
+      <if test="updatetime != null" >
+        updateTime,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -74,11 +74,11 @@
       <if test="usertype != null" >
         #{usertype,jdbcType=VARCHAR},
       </if>
-      <if test="createTime != null" >
-        now(),
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
       </if>
-      <if test="updateTime != null" >
-        now(),
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -97,11 +97,11 @@
       <if test="usertype != null" >
         userType = #{usertype,jdbcType=VARCHAR},
       </if>
-      <if test="createTime != null" >
-        create_time = #{createTime,jdbcType=TIMESTAMP},
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
       </if>
-      <if test="updateTime != null" >
-        update_time = now(),
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
       </if>
     </set>
     where userID = #{userid,jdbcType=INTEGER}
@@ -112,8 +112,20 @@
       password = #{password,jdbcType=VARCHAR},
       loginTime = #{logintime,jdbcType=TIMESTAMP},
       userType = #{usertype,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = now()
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP}
     where userID = #{userid,jdbcType=INTEGER}
   </update>
+  <select id="checkUsername" parameterType="String" resultType="int">
+    select count(1)
+    from user
+    where username = #{username}
+  </select>
+  <select id="selectLogin" resultMap="BaseResultMap" parameterType="map">
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where username = #{username}
+    and password = #{password}
+  </select>
 </mapper>

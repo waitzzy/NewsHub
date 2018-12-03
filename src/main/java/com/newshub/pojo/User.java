@@ -13,18 +13,18 @@ public class User {
 
     private String usertype;
 
-    private Date createTime;
+    private Date createtime;
 
-    private Date updateTime;
+    private Date updatetime;
 
-    public User(Integer userid, String username, String password, Date logintime, String usertype, Date createTime, Date updateTime) {
+    public User(Integer userid, String username, String password, Date logintime, String usertype, Date createtime, Date updatetime) {
         this.userid = userid;
         this.username = username;
         this.password = password;
         this.logintime = logintime;
         this.usertype = usertype;
-        this.createTime = createTime;
-        this.updateTime = updateTime;
+        this.createtime = createtime;
+        this.updatetime = updatetime;
     }
 
     public User() {
@@ -71,19 +71,19 @@ public class User {
         this.usertype = usertype == null ? null : usertype.trim();
     }
 
-    public Date getCreateTime() {
-        return createTime;
+    public Date getCreatetime() {
+        return createtime;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setCreatetime(Date createtime) {
+        this.createtime = createtime;
     }
 
-    public Date getUpdateTime() {
-        return updateTime;
+    public Date getUpdatetime() {
+        return updatetime;
     }
 
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
+    public void setUpdatetime(Date updatetime) {
+        this.updatetime = updatetime;
     }
 }

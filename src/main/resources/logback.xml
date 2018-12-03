@@ -11,10 +11,10 @@
     </appender>
 
     <appender name="newshub" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <!--<File>d:/mmalllog/mmall.log</File>-->
-        <File>/usr/local/Cellar/tomcat/9.0.6/libexec/logs/mmall.log</File>
+        <!--<File>d:/newshublog/newshub.log</File>-->
+        <File>/usr/local/Cellar/tomcat/9.0.6/libexec/logs/newshub.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>/usr/local/Cellar/tomcat/9.0.6/libexec/logs/mmall.log.%d{yyyy-MM-dd}.gz</fileNamePattern>
+            <fileNamePattern>/usr/local/Cellar/tomcat/9.0.6/libexec/logs/newshub.log.%d{yyyy-MM-dd}.gz</fileNamePattern>
             <append>true</append>
             <maxHistory>10</maxHistory>
         </rollingPolicy>
@@ -25,11 +25,11 @@
 
 
     <appender name="error" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <!--<File>d:/mmalllog/error.log</File>-->
+        <!--<File>d:/newshublog/error.log</File>-->
         <File>/usr/local/Cellar/tomcat/9.0.6/libexec/logs/error.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>/usr/local/Cellar/tomcat/9.0.6/libexec/logs/error.log.%d{yyyy-MM-dd}.gz</fileNamePattern>
-            <!--<fileNamePattern>d:/mmalllog/error.log.%d{yyyy-MM-dd}.gz</fileNamePattern>-->
+            <!--<fileNamePattern>d:/newshublog/error.log.%d{yyyy-MM-dd}.gz</fileNamePattern>-->
             <append>true</append>
             <maxHistory>10</maxHistory>
         </rollingPolicy>

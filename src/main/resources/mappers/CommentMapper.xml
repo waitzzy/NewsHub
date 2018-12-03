@@ -5,21 +5,19 @@
     <constructor >
       <idArg column="commentID" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="newsID" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
-      <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="updateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
     </constructor>
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.newshub.pojo.Comment" >
     <constructor >
       <idArg column="commentID" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="newsID" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
-      <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="updateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
       <arg column="commentContent" jdbcType="LONGVARCHAR" javaType="java.lang.String" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List" >
-    commentID, newsID, create_time, update_time
+    commentID, newsID, updateTime
   </sql>
   <sql id="Blob_Column_List" >
     commentContent
@@ -37,10 +35,10 @@
     where commentID = #{commentid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.newshub.pojo.Comment" >
-    insert into comments (commentID, newsID, create_time, 
-      update_time, commentContent)
-    values (#{commentid,jdbcType=INTEGER}, #{newsid,jdbcType=INTEGER}, now(),
-      now(), #{commentcontent,jdbcType=LONGVARCHAR})
+    insert into comments (commentID, newsID, updateTime, 
+      commentContent)
+    values (#{commentid,jdbcType=INTEGER}, #{newsid,jdbcType=INTEGER}, #{updatetime,jdbcType=TIMESTAMP}, 
+      #{commentcontent,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.newshub.pojo.Comment" >
     insert into comments
@@ -51,11 +49,8 @@
       <if test="newsid != null" >
         newsID,
       </if>
-      <if test="createTime != null" >
-        create_time,
-      </if>
-      <if test="updateTime != null" >
-        update_time,
+      <if test="updatetime != null" >
+        updateTime,
       </if>
       <if test="commentcontent != null" >
         commentContent,
@@ -68,11 +63,8 @@
       <if test="newsid != null" >
         #{newsid,jdbcType=INTEGER},
       </if>
-      <if test="createTime != null" >
-        now(),
-      </if>
-      <if test="updateTime != null" >
-        now(),
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
       </if>
       <if test="commentcontent != null" >
         #{commentcontent,jdbcType=LONGVARCHAR},
@@ -85,11 +77,8 @@
       <if test="newsid != null" >
         newsID = #{newsid,jdbcType=INTEGER},
       </if>
-      <if test="createTime != null" >
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null" >
-        update_time = now(),
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
       </if>
       <if test="commentcontent != null" >
         commentContent = #{commentcontent,jdbcType=LONGVARCHAR},
@@ -100,16 +89,14 @@
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.newshub.pojo.Comment" >
     update comments
     set newsID = #{newsid,jdbcType=INTEGER},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = now(),
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
       commentContent = #{commentcontent,jdbcType=LONGVARCHAR}
     where commentID = #{commentid,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.newshub.pojo.Comment" >
     update comments
     set newsID = #{newsid,jdbcType=INTEGER},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = now()
+      updateTime = #{updatetime,jdbcType=TIMESTAMP}
     where commentID = #{commentid,jdbcType=INTEGER}
   </update>
 </mapper>

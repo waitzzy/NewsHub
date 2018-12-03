@@ -8,7 +8,7 @@
       <arg column="newsCrawlTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
       <arg column="newsSource" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="newsLabel" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="newsTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
       <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
     </constructor>
   </resultMap>
@@ -19,13 +19,13 @@
       <arg column="newsCrawlTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
       <arg column="newsSource" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="newsLabel" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="newsTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
       <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
       <arg column="newsContent" jdbcType="LONGVARCHAR" javaType="java.lang.String" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List" >
-    newsID, newsTitle, newsCrawlTime, newsSource, newsLabel, create_time, update_time
+    newsID, newsTitle, newsCrawlTime, newsSource, newsLabel, newsTime, update_time
   </sql>
   <sql id="Blob_Column_List" >
     newsContent
@@ -44,11 +44,11 @@
   </delete>
   <insert id="insert" parameterType="com.newshub.pojo.New" >
     insert into news (newsID, newsTitle, newsCrawlTime, 
-      newsSource, newsLabel, create_time, 
+      newsSource, newsLabel, newsTime, 
       update_time, newsContent)
     values (#{newsid,jdbcType=INTEGER}, #{newstitle,jdbcType=VARCHAR}, #{newscrawltime,jdbcType=TIMESTAMP}, 
-      #{newssource,jdbcType=VARCHAR}, #{newslabel,jdbcType=VARCHAR}, now(),
-      now(), #{newscontent,jdbcType=LONGVARCHAR})
+      #{newssource,jdbcType=VARCHAR}, #{newslabel,jdbcType=VARCHAR}, #{newstime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{newscontent,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.newshub.pojo.New" >
     insert into news
@@ -68,8 +68,8 @@
       <if test="newslabel != null" >
         newsLabel,
       </if>
-      <if test="createTime != null" >
-        create_time,
+      <if test="newstime != null" >
+        newsTime,
       </if>
       <if test="updateTime != null" >
         update_time,
@@ -94,11 +94,11 @@
       <if test="newslabel != null" >
         #{newslabel,jdbcType=VARCHAR},
       </if>
-      <if test="createTime != null" >
-        now(),
+      <if test="newstime != null" >
+        #{newstime,jdbcType=TIMESTAMP},
       </if>
       <if test="updateTime != null" >
-        now(),
+        #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="newscontent != null" >
         #{newscontent,jdbcType=LONGVARCHAR},
@@ -120,11 +120,11 @@
       <if test="newslabel != null" >
         newsLabel = #{newslabel,jdbcType=VARCHAR},
       </if>
-      <if test="createTime != null" >
-        create_time = #{createTime,jdbcType=TIMESTAMP},
+      <if test="newstime != null" >
+        newsTime = #{newstime,jdbcType=TIMESTAMP},
       </if>
       <if test="updateTime != null" >
-        update_time = now(),
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="newscontent != null" >
         newsContent = #{newscontent,jdbcType=LONGVARCHAR},
@@ -138,8 +138,8 @@
       newsCrawlTime = #{newscrawltime,jdbcType=TIMESTAMP},
       newsSource = #{newssource,jdbcType=VARCHAR},
       newsLabel = #{newslabel,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = now(),
+      newsTime = #{newstime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
       newsContent = #{newscontent,jdbcType=LONGVARCHAR}
     where newsID = #{newsid,jdbcType=INTEGER}
   </update>
@@ -149,8 +149,8 @@
       newsCrawlTime = #{newscrawltime,jdbcType=TIMESTAMP},
       newsSource = #{newssource,jdbcType=VARCHAR},
       newsLabel = #{newslabel,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = now()
+      newsTime = #{newstime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
     where newsID = #{newsid,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -13,19 +13,19 @@ public class New {
 
     private String newslabel;
 
-    private Date createTime;
+    private Date newstime;
 
     private Date updateTime;
 
     private String newscontent;
 
-    public New(Integer newsid, String newstitle, Date newscrawltime, String newssource, String newslabel, Date createTime, Date updateTime, String newscontent) {
+    public New(Integer newsid, String newstitle, Date newscrawltime, String newssource, String newslabel, Date newstime, Date updateTime, String newscontent) {
         this.newsid = newsid;
         this.newstitle = newstitle;
         this.newscrawltime = newscrawltime;
         this.newssource = newssource;
         this.newslabel = newslabel;
-        this.createTime = createTime;
+        this.newstime = newstime;
         this.updateTime = updateTime;
         this.newscontent = newscontent;
     }
@@ -74,12 +74,12 @@ public class New {
         this.newslabel = newslabel == null ? null : newslabel.trim();
     }
 
-    public Date getCreateTime() {
-        return createTime;
+    public Date getNewstime() {
+        return newstime;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setNewstime(Date newstime) {
+        this.newstime = newstime;
     }
 
     public Date getUpdateTime() {

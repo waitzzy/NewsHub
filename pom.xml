@@ -192,6 +192,13 @@
       <artifactId>jsqlparser</artifactId>
       <version>0.9.4</version>
     </dependency>
+
+    <!--JSTL 解析JSP标签-->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jstl</artifactId>
+      <version>1.2</version>
+    </dependency>
   </dependencies>
 
   <build>

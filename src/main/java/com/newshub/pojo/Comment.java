@@ -7,17 +7,14 @@ public class Comment {
 
     private Integer newsid;
 
-    private Date createTime;
-
-    private Date updateTime;
+    private Date updatetime;
 
     private String commentcontent;
 
-    public Comment(Integer commentid, Integer newsid, Date createTime, Date updateTime, String commentcontent) {
+    public Comment(Integer commentid, Integer newsid, Date updatetime, String commentcontent) {
         this.commentid = commentid;
         this.newsid = newsid;
-        this.createTime = createTime;
-        this.updateTime = updateTime;
+        this.updatetime = updatetime;
         this.commentcontent = commentcontent;
     }
 
@@ -41,20 +38,12 @@ public class Comment {
         this.newsid = newsid;
     }
 
-    public Date getCreateTime() {
-        return createTime;
+    public Date getUpdatetime() {
+        return updatetime;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
+    public void setUpdatetime(Date updatetime) {
+        this.updatetime = updatetime;
     }
 
     public String getCommentcontent() {
