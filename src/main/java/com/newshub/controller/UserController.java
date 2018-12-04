@@ -20,16 +20,6 @@ public class UserController {
     @Autowired
     private IUserService iUserService;
 
-    @RequestMapping("signin")
-    public String signin(){
-        return "signin";
-    }
-
-    @RequestMapping("title")
-    public String title(){
-        return "title";
-    }
-
     @RequestMapping("login.do")
     @ResponseBody
     public ServerResponse<User> login(@RequestParam(value = "user")String username, @RequestParam(value = "password") String password, HttpSession session){

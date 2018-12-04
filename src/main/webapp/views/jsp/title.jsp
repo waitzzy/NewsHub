@@ -10,9 +10,9 @@
 <head>
     <title>Title</title>
     <%-- Bootstrap --%>
-    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="/newshub/views/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <%-- Custom styles for this template --%>
-    <link href="css/cover.css" rel="stylesheet">
+    <link href="/newshub/views/css/cover.css" rel="stylesheet">
 </head>
 <body>
 <div class="site-wrapper">
@@ -48,9 +48,9 @@
         </div>
     </div>
 </div>
-<script src="js/temp.js?ver=1"></script>
+<script src="/newshub/views/js/userAjax.js?ver=1"></script>
 <%-- Bootstrap --%>
-<script src="js/jquery-3.3.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+<script src="/newshub/views/js/jquery-3.3.1.min.js"></script>
+<script src="/newshub/views/js/bootstrap.min.js"></script>
 </body>
 </html>

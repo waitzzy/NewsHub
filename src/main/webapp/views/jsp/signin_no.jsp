@@ -10,10 +10,10 @@
 <head>
     <title>Title</title>
     <%-- Bootstrap --%>
-    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="/newshub/views/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <%-- Custom styles for this template --%>
-    <link href="css/cover.css" rel="stylesheet">
-    <link href="css/signin.css" rel="stylesheet" media="screen">
+    <link href="/newshub/views/css/cover.css" rel="stylesheet">
+    <link href="/newshub/views/css/signin.css" rel="stylesheet" media="screen">
 </head>
 <body>
 <div class="site-wrapper">
@@ -36,8 +36,8 @@
                 <div class="alert alert-danger" role="alert">
                     <p>
                         对不起！
-                        您输入的用户名不存在或者密码错误！
                     </p>
+                    <p id="msg"></p>
                 </div>
             </div>
             <a href="signin" class="btn btn-lg btn-default">返回</a>
@@ -51,9 +51,12 @@
         </div>
     </div>
 </div>
-<script src="js/temp.js?ver=1"></script>
+<script src="/newshub/views/js/userAjax.js?ver=1"></script>
 <%-- Bootstrap --%>
-<script src="js/jquery-3.3.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+<script src="/newshub/views/js/jquery-3.3.1.min.js"></script>
+<script src="/newshub/views/js/bootstrap.min.js"></script>
+<script>
+    document.getElementById("msg").innerText = getUrlParam("msg");
+</script>
 </body>
 </html>
