@@ -30,8 +30,8 @@
       loginTime, userType, createTime, 
       updateTime)
     values (#{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{logintime,jdbcType=TIMESTAMP}, #{usertype,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
-      #{updatetime,jdbcType=TIMESTAMP})
+      #{logintime,jdbcType=TIMESTAMP}, #{usertype,jdbcType=VARCHAR}, now(),
+      now())
   </insert>
   <insert id="insertSelective" parameterType="com.newshub.pojo.User" >
     insert into user
@@ -75,10 +75,10 @@
         #{usertype,jdbcType=VARCHAR},
       </if>
       <if test="createtime != null" >
-        #{createtime,jdbcType=TIMESTAMP},
+        now(),
       </if>
       <if test="updatetime != null" >
-        #{updatetime,jdbcType=TIMESTAMP},
+        now(),
       </if>
     </trim>
   </insert>
@@ -101,7 +101,7 @@
         createTime = #{createtime,jdbcType=TIMESTAMP},
       </if>
       <if test="updatetime != null" >
-        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+        updateTime = now(),
       </if>
     </set>
     where userID = #{userid,jdbcType=INTEGER}
@@ -113,7 +113,7 @@
       loginTime = #{logintime,jdbcType=TIMESTAMP},
       userType = #{usertype,jdbcType=VARCHAR},
       createTime = #{createtime,jdbcType=TIMESTAMP},
-      updateTime = #{updatetime,jdbcType=TIMESTAMP}
+      updateTime = now()
     where userID = #{userid,jdbcType=INTEGER}
   </update>
   <select id="checkUsername" parameterType="String" resultType="int">
@@ -121,11 +121,22 @@
     from user
     where username = #{username}
   </select>
+  <update id="updateLogin" parameterType="java.lang.Integer">
+    update user
+    set loginTime = now()
+    where userID = #{id}
+  </update>
   <select id="selectLogin" resultMap="BaseResultMap" parameterType="map">
     select
     <include refid="Base_Column_List" />
     from user
     where username = #{username}
     and password = #{password}
+  </select>
+  <select id="selectList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from user
+    order by userID asc
   </select>
 </mapper>

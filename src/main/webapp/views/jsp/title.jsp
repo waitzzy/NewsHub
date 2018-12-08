@@ -10,9 +10,9 @@
 <head>
     <title>Title</title>
     <%-- Bootstrap --%>
-    <link href="/newshub/views/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
     <%-- Custom styles for this template --%>
-    <link href="/newshub/views/css/cover.css" rel="stylesheet">
+    <link href="../css/cover.css" rel="stylesheet">
 </head>
 <body>
 <div class="site-wrapper">
@@ -24,8 +24,8 @@
                     <h3 class="masthead-brand">新闻信息整合推荐网站</h3>
                     <nav>
                         <ul class="nav masthead-nav">
-                            <li class="active"><a href="#">Home</a></li>
-                            <li><a href="signin">Sign in</a></li>
+                            <li class="active"><a href="title.jsp">Home</a></li>
+                            <li><a href="signin.jsp">Sign in</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -35,7 +35,7 @@
                 <h1 class="cover-beading">NewsHub</h1>
                 <p class="lead">新闻分类网站——demo</p>
                 <p class="lead">
-                    <a href="signin" class="btn btn-lg btn-default">Sign in</a>
+                    <a href="signin.jsp" class="btn btn-lg btn-default">Sign in</a>
                 </p>
             </div>
 
@@ -48,9 +48,9 @@
         </div>
     </div>
 </div>
-<script src="/newshub/views/js/userAjax.js?ver=1"></script>
+<script src="../js/userAjax.js?ver=1"></script>
 <%-- Bootstrap --%>
-<script src="/newshub/views/js/jquery-3.3.1.min.js"></script>
-<script src="/newshub/views/js/bootstrap.min.js"></script>
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
 </body>
 </html>

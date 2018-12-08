@@ -29,7 +29,7 @@
       viewedTimes, create_time, update_time
       )
     values (#{historyid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{newsid,jdbcType=INTEGER}, 
-      #{viewedtimes,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      #{viewedtimes,jdbcType=INTEGER}, now(), now()
       )
   </insert>
   <insert id="insertSelective" parameterType="com.newshub.pojo.History" >
@@ -68,10 +68,10 @@
         #{viewedtimes,jdbcType=INTEGER},
       </if>
       <if test="createTime != null" >
-        #{createTime,jdbcType=TIMESTAMP},
+        now(),
       </if>
       <if test="updateTime != null" >
-        #{updateTime,jdbcType=TIMESTAMP},
+        now(),
       </if>
     </trim>
   </insert>
@@ -91,7 +91,7 @@
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="updateTime != null" >
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
+        update_time = now(),
       </if>
     </set>
     where historyID = #{historyid,jdbcType=INTEGER}
@@ -102,7 +102,7 @@
       newsID = #{newsid,jdbcType=INTEGER},
       viewedTimes = #{viewedtimes,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP}
+      update_time = now()
     where historyID = #{historyid,jdbcType=INTEGER}
   </update>
 </mapper>

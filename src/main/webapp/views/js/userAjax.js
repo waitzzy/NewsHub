@@ -8,8 +8,8 @@ function check() {
     console.log(passWord);
     $.ajax({
         type: 'POST',
-        url: '/newshub/login.do',
-        data: 'user=' + userName + '&password=' + passWord,
+        url: 'user/login.do',
+        data: 'username=' + userName + '&password=' + passWord,
         success: function (data) {
             if (data.status == 0) {
                 window.location.href = signinAddress;

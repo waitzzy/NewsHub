@@ -3,6 +3,8 @@ package com.newshub.dao;
 import com.newshub.pojo.User;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 public interface UserMapper {
     int deleteByPrimaryKey(Integer userid);
 
@@ -19,4 +21,8 @@ public interface UserMapper {
     int checkUsername(String username);
 
     User selectLogin(@Param("username") String username, @Param("password") String password);
+
+    int updateLogin(Integer id);
+
+    List<User> selectList();
 }

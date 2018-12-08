@@ -37,7 +37,7 @@
   <insert id="insert" parameterType="com.newshub.pojo.Comment" >
     insert into comments (commentID, newsID, updateTime, 
       commentContent)
-    values (#{commentid,jdbcType=INTEGER}, #{newsid,jdbcType=INTEGER}, #{updatetime,jdbcType=TIMESTAMP}, 
+    values (#{commentid,jdbcType=INTEGER}, #{newsid,jdbcType=INTEGER}, now(),
       #{commentcontent,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.newshub.pojo.Comment" >
@@ -64,7 +64,7 @@
         #{newsid,jdbcType=INTEGER},
       </if>
       <if test="updatetime != null" >
-        #{updatetime,jdbcType=TIMESTAMP},
+        now(),
       </if>
       <if test="commentcontent != null" >
         #{commentcontent,jdbcType=LONGVARCHAR},
@@ -78,7 +78,7 @@
         newsID = #{newsid,jdbcType=INTEGER},
       </if>
       <if test="updatetime != null" >
-        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+        updateTime = now(),
       </if>
       <if test="commentcontent != null" >
         commentContent = #{commentcontent,jdbcType=LONGVARCHAR},
@@ -89,14 +89,14 @@
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.newshub.pojo.Comment" >
     update comments
     set newsID = #{newsid,jdbcType=INTEGER},
-      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      updateTime = now(),
       commentContent = #{commentcontent,jdbcType=LONGVARCHAR}
     where commentID = #{commentid,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.newshub.pojo.Comment" >
     update comments
     set newsID = #{newsid,jdbcType=INTEGER},
-      updateTime = #{updatetime,jdbcType=TIMESTAMP}
+      updateTime = now()
     where commentID = #{commentid,jdbcType=INTEGER}
   </update>
 </mapper>

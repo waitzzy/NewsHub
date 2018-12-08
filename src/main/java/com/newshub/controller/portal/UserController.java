@@ -1,4 +1,4 @@
-package com.newshub.controller;
+package com.newshub.controller.portal;
 
 import com.newshub.common.Const;
 import com.newshub.common.ServerResponse;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/user/")
 public class UserController {
 
     @Autowired
@@ -22,12 +22,18 @@ public class UserController {
 
     @RequestMapping("login.do")
     @ResponseBody
-    public ServerResponse<User> login(@RequestParam(value = "user")String username, @RequestParam(value = "password") String password, HttpSession session){
+    public ServerResponse<User> login(@RequestParam(value = "username")String username, @RequestParam(value = "password") String password, HttpSession session){
         ServerResponse<User> response = iUserService.login(username, password);
         if (response.isSuccess()) {
             session.setAttribute(Const.CURRENT_USER, response.getData());
         }
 
         return response;
+    }
+
+    @RequestMapping("register.do")
+    @ResponseBody
+    public ServerResponse<String> register(User user){
+        return iUserService.register(user);
     }
 }

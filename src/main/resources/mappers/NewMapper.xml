@@ -47,8 +47,8 @@
       newsSource, newsLabel, newsTime, 
       update_time, newsContent)
     values (#{newsid,jdbcType=INTEGER}, #{newstitle,jdbcType=VARCHAR}, #{newscrawltime,jdbcType=TIMESTAMP}, 
-      #{newssource,jdbcType=VARCHAR}, #{newslabel,jdbcType=VARCHAR}, #{newstime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP}, #{newscontent,jdbcType=LONGVARCHAR})
+      #{newssource,jdbcType=VARCHAR}, #{newslabel,jdbcType=VARCHAR}, now(),
+      now(), #{newscontent,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.newshub.pojo.New" >
     insert into news
@@ -95,10 +95,10 @@
         #{newslabel,jdbcType=VARCHAR},
       </if>
       <if test="newstime != null" >
-        #{newstime,jdbcType=TIMESTAMP},
+        now(),
       </if>
       <if test="updateTime != null" >
-        #{updateTime,jdbcType=TIMESTAMP},
+        now(),
       </if>
       <if test="newscontent != null" >
         #{newscontent,jdbcType=LONGVARCHAR},
@@ -124,7 +124,7 @@
         newsTime = #{newstime,jdbcType=TIMESTAMP},
       </if>
       <if test="updateTime != null" >
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
+        update_time = now(),
       </if>
       <if test="newscontent != null" >
         newsContent = #{newscontent,jdbcType=LONGVARCHAR},
@@ -139,7 +139,7 @@
       newsSource = #{newssource,jdbcType=VARCHAR},
       newsLabel = #{newslabel,jdbcType=VARCHAR},
       newsTime = #{newstime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_time = now(),
       newsContent = #{newscontent,jdbcType=LONGVARCHAR}
     where newsID = #{newsid,jdbcType=INTEGER}
   </update>
@@ -150,7 +150,7 @@
       newsSource = #{newssource,jdbcType=VARCHAR},
       newsLabel = #{newslabel,jdbcType=VARCHAR},
       newsTime = #{newstime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP}
+      update_time = now()
     where newsID = #{newsid,jdbcType=INTEGER}
   </update>
 </mapper>
