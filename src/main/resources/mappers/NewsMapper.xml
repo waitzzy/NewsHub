@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.newshub.dao.NewMapper" >
-  <resultMap id="BaseResultMap" type="com.newshub.pojo.New" >
+<mapper namespace="com.newshub.dao.NewsMapper" >
+  <resultMap id="BaseResultMap" type="com.newshub.pojo.News" >
     <constructor >
       <idArg column="newsID" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="newsTitle" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="newsCrawlTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
       <arg column="newsSource" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="newsLabel" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="newsTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="newsTime" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
     </constructor>
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.newshub.pojo.New" >
+  <resultMap id="ResultMapWithBLOBs" type="com.newshub.pojo.News" >
     <constructor >
       <idArg column="newsID" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="newsTitle" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="newsCrawlTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
       <arg column="newsSource" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="newsLabel" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="newsTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="newsTime" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
       <arg column="newsContent" jdbcType="LONGVARCHAR" javaType="java.lang.String" />
     </constructor>
@@ -42,15 +42,15 @@
     delete from news
     where newsID = #{newsid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.newshub.pojo.New" >
+  <insert id="insert" parameterType="com.newshub.pojo.News" >
     insert into news (newsID, newsTitle, newsCrawlTime, 
       newsSource, newsLabel, newsTime, 
       update_time, newsContent)
     values (#{newsid,jdbcType=INTEGER}, #{newstitle,jdbcType=VARCHAR}, #{newscrawltime,jdbcType=TIMESTAMP}, 
-      #{newssource,jdbcType=VARCHAR}, #{newslabel,jdbcType=VARCHAR}, now(),
+      #{newssource,jdbcType=VARCHAR}, #{newslabel,jdbcType=VARCHAR}, #{newstime,jdbcType=VARCHAR},
       now(), #{newscontent,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.newshub.pojo.New" >
+  <insert id="insertSelective" parameterType="com.newshub.pojo.News" >
     insert into news
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="newsid != null" >
@@ -95,7 +95,7 @@
         #{newslabel,jdbcType=VARCHAR},
       </if>
       <if test="newstime != null" >
-        now(),
+        #{newstime,jdbcType=VARCHAR},
       </if>
       <if test="updateTime != null" >
         now(),
@@ -105,7 +105,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.newshub.pojo.New" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.newshub.pojo.News" >
     update news
     <set >
       <if test="newstitle != null" >
@@ -121,7 +121,7 @@
         newsLabel = #{newslabel,jdbcType=VARCHAR},
       </if>
       <if test="newstime != null" >
-        newsTime = #{newstime,jdbcType=TIMESTAMP},
+        newsTime = #{newstime,jdbcType=VARCHAR},
       </if>
       <if test="updateTime != null" >
         update_time = now(),
@@ -132,25 +132,38 @@
     </set>
     where newsID = #{newsid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.newshub.pojo.New" >
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.newshub.pojo.News" >
     update news
     set newsTitle = #{newstitle,jdbcType=VARCHAR},
       newsCrawlTime = #{newscrawltime,jdbcType=TIMESTAMP},
       newsSource = #{newssource,jdbcType=VARCHAR},
       newsLabel = #{newslabel,jdbcType=VARCHAR},
-      newsTime = #{newstime,jdbcType=TIMESTAMP},
+      newsTime = #{newstime,jdbcType=VARCHAR},
       update_time = now(),
       newsContent = #{newscontent,jdbcType=LONGVARCHAR}
     where newsID = #{newsid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.newshub.pojo.New" >
+  <update id="updateByPrimaryKey" parameterType="com.newshub.pojo.News" >
     update news
     set newsTitle = #{newstitle,jdbcType=VARCHAR},
       newsCrawlTime = #{newscrawltime,jdbcType=TIMESTAMP},
       newsSource = #{newssource,jdbcType=VARCHAR},
       newsLabel = #{newslabel,jdbcType=VARCHAR},
-      newsTime = #{newstime,jdbcType=TIMESTAMP},
+      newsTime = #{newstime,jdbcType=VARCHAR},
       update_time = now()
     where newsID = #{newsid,jdbcType=INTEGER}
   </update>
+  <select id="checkByTitle" parameterType="String" resultType="int">
+    select count(1)
+    from news
+    where newsTitle = #{title}
+  </select>
+  <select id="selectList" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List"/>
+    ,
+    <include refid="Blob_Column_List"/>
+    from news
+    order by newsID asc
+  </select>
 </mapper>

@@ -2,7 +2,7 @@ package com.newshub.pojo;
 
 import java.util.Date;
 
-public class New {
+public class News {
     private Integer newsid;
 
     private String newstitle;
@@ -13,13 +13,13 @@ public class New {
 
     private String newslabel;
 
-    private Date newstime;
+    private String newstime;
 
     private Date updateTime;
 
     private String newscontent;
 
-    public New(Integer newsid, String newstitle, Date newscrawltime, String newssource, String newslabel, Date newstime, Date updateTime, String newscontent) {
+    public News(Integer newsid, String newstitle, Date newscrawltime, String newssource, String newslabel, String newstime, Date updateTime, String newscontent) {
         this.newsid = newsid;
         this.newstitle = newstitle;
         this.newscrawltime = newscrawltime;
@@ -30,7 +30,7 @@ public class New {
         this.newscontent = newscontent;
     }
 
-    public New() {
+    public News() {
         super();
     }
 
@@ -74,11 +74,11 @@ public class New {
         this.newslabel = newslabel == null ? null : newslabel.trim();
     }
 
-    public Date getNewstime() {
+    public String getNewstime() {
         return newstime;
     }
 
-    public void setNewstime(Date newstime) {
+    public void setNewstime(String newstime) {
         this.newstime = newstime;
     }
 

@@ -99,4 +99,12 @@
       updateTime = now()
     where commentID = #{commentid,jdbcType=INTEGER}
   </update>
+  <select id="selectList" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from comments
+    order by commentID asc
+  </select>
 </mapper>
