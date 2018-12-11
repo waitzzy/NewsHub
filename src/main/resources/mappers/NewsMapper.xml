@@ -1,138 +1,147 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.newshub.dao.NewsMapper" >
-  <resultMap id="BaseResultMap" type="com.newshub.pojo.News" >
-    <constructor >
-      <idArg column="newsID" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="newsTitle" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="newsCrawlTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
-      <arg column="newsSource" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="newsLabel" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="newsTime" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
-    </constructor>
-  </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.newshub.pojo.News" >
-    <constructor >
-      <idArg column="newsID" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="newsTitle" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="newsCrawlTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
-      <arg column="newsSource" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="newsLabel" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="newsTime" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
-      <arg column="newsContent" jdbcType="LONGVARCHAR" javaType="java.lang.String" />
-    </constructor>
-  </resultMap>
-  <sql id="Base_Column_List" >
-    newsID, newsTitle, newsCrawlTime, newsSource, newsLabel, newsTime, update_time
-  </sql>
-  <sql id="Blob_Column_List" >
-    newsContent
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from news
-    where newsID = #{newsid,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+<mapper namespace="com.newshub.dao.NewsMapper">
+    <resultMap id="BaseResultMap" type="com.newshub.pojo.News">
+        <constructor>
+            <idArg column="newsID" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="newsTitle" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="newsCrawlTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+            <arg column="newsSource" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="newsLabel" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="newsTime" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        </constructor>
+    </resultMap>
+    <resultMap id="ResultMapWithBLOBs" type="com.newshub.pojo.News">
+        <constructor>
+            <idArg column="newsID" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="newsTitle" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="newsCrawlTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+            <arg column="newsSource" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="newsLabel" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="newsTime" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+            <arg column="newsContent" jdbcType="LONGVARCHAR" javaType="java.lang.String"/>
+        </constructor>
+    </resultMap>
+    <resultMap id="ResultTypeByTitle" type="com.newshub.vo.NewsTitleVo">
+        <constructor>
+            <idArg column="newsID" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="newsTitle" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
+        newsID, newsTitle, newsCrawlTime, newsSource, newsLabel, newsTime, update_time
+    </sql>
+    <sql id="Title_Column_List">
+        newsID, newsTitle
+    </sql>
+    <sql id="Blob_Column_List">
+        newsContent
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from news
+        where newsID = #{newsid,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from news
     where newsID = #{newsid,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.newshub.pojo.News" >
+    </delete>
+    <insert id="insert" parameterType="com.newshub.pojo.News">
     insert into news (newsID, newsTitle, newsCrawlTime, 
       newsSource, newsLabel, newsTime, 
       update_time, newsContent)
     values (#{newsid,jdbcType=INTEGER}, #{newstitle,jdbcType=VARCHAR}, #{newscrawltime,jdbcType=TIMESTAMP}, 
       #{newssource,jdbcType=VARCHAR}, #{newslabel,jdbcType=VARCHAR}, #{newstime,jdbcType=VARCHAR},
       now(), #{newscontent,jdbcType=LONGVARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.newshub.pojo.News" >
-    insert into news
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="newsid != null" >
-        newsID,
-      </if>
-      <if test="newstitle != null" >
-        newsTitle,
-      </if>
-      <if test="newscrawltime != null" >
-        newsCrawlTime,
-      </if>
-      <if test="newssource != null" >
-        newsSource,
-      </if>
-      <if test="newslabel != null" >
-        newsLabel,
-      </if>
-      <if test="newstime != null" >
-        newsTime,
-      </if>
-      <if test="updateTime != null" >
-        update_time,
-      </if>
-      <if test="newscontent != null" >
-        newsContent,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="newsid != null" >
-        #{newsid,jdbcType=INTEGER},
-      </if>
-      <if test="newstitle != null" >
-        #{newstitle,jdbcType=VARCHAR},
-      </if>
-      <if test="newscrawltime != null" >
-        #{newscrawltime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="newssource != null" >
-        #{newssource,jdbcType=VARCHAR},
-      </if>
-      <if test="newslabel != null" >
-        #{newslabel,jdbcType=VARCHAR},
-      </if>
-      <if test="newstime != null" >
-        #{newstime,jdbcType=VARCHAR},
-      </if>
-      <if test="updateTime != null" >
-        now(),
-      </if>
-      <if test="newscontent != null" >
-        #{newscontent,jdbcType=LONGVARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.newshub.pojo.News" >
-    update news
-    <set >
-      <if test="newstitle != null" >
-        newsTitle = #{newstitle,jdbcType=VARCHAR},
-      </if>
-      <if test="newscrawltime != null" >
-        newsCrawlTime = #{newscrawltime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="newssource != null" >
-        newsSource = #{newssource,jdbcType=VARCHAR},
-      </if>
-      <if test="newslabel != null" >
-        newsLabel = #{newslabel,jdbcType=VARCHAR},
-      </if>
-      <if test="newstime != null" >
-        newsTime = #{newstime,jdbcType=VARCHAR},
-      </if>
-      <if test="updateTime != null" >
-        update_time = now(),
-      </if>
-      <if test="newscontent != null" >
-        newsContent = #{newscontent,jdbcType=LONGVARCHAR},
-      </if>
-    </set>
-    where newsID = #{newsid,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.newshub.pojo.News" >
+    </insert>
+    <insert id="insertSelective" parameterType="com.newshub.pojo.News">
+        insert into news
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="newsid != null">
+                newsID,
+            </if>
+            <if test="newstitle != null">
+                newsTitle,
+            </if>
+            <if test="newscrawltime != null">
+                newsCrawlTime,
+            </if>
+            <if test="newssource != null">
+                newsSource,
+            </if>
+            <if test="newslabel != null">
+                newsLabel,
+            </if>
+            <if test="newstime != null">
+                newsTime,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="newscontent != null">
+                newsContent,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="newsid != null">
+                #{newsid,jdbcType=INTEGER},
+            </if>
+            <if test="newstitle != null">
+                #{newstitle,jdbcType=VARCHAR},
+            </if>
+            <if test="newscrawltime != null">
+                #{newscrawltime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="newssource != null">
+                #{newssource,jdbcType=VARCHAR},
+            </if>
+            <if test="newslabel != null">
+                #{newslabel,jdbcType=VARCHAR},
+            </if>
+            <if test="newstime != null">
+                #{newstime,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                now(),
+            </if>
+            <if test="newscontent != null">
+                #{newscontent,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.newshub.pojo.News">
+        update news
+        <set>
+            <if test="newstitle != null">
+                newsTitle = #{newstitle,jdbcType=VARCHAR},
+            </if>
+            <if test="newscrawltime != null">
+                newsCrawlTime = #{newscrawltime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="newssource != null">
+                newsSource = #{newssource,jdbcType=VARCHAR},
+            </if>
+            <if test="newslabel != null">
+                newsLabel = #{newslabel,jdbcType=VARCHAR},
+            </if>
+            <if test="newstime != null">
+                newsTime = #{newstime,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                update_time = now(),
+            </if>
+            <if test="newscontent != null">
+                newsContent = #{newscontent,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where newsID = #{newsid,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.newshub.pojo.News">
     update news
     set newsTitle = #{newstitle,jdbcType=VARCHAR},
       newsCrawlTime = #{newscrawltime,jdbcType=TIMESTAMP},
@@ -142,8 +151,8 @@
       update_time = now(),
       newsContent = #{newscontent,jdbcType=LONGVARCHAR}
     where newsID = #{newsid,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.newshub.pojo.News" >
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.newshub.pojo.News">
     update news
     set newsTitle = #{newstitle,jdbcType=VARCHAR},
       newsCrawlTime = #{newscrawltime,jdbcType=TIMESTAMP},
@@ -152,18 +161,24 @@
       newsTime = #{newstime,jdbcType=VARCHAR},
       update_time = now()
     where newsID = #{newsid,jdbcType=INTEGER}
-  </update>
-  <select id="checkByTitle" parameterType="String" resultType="int">
+    </update>
+    <select id="checkByTitle" parameterType="String" resultType="int">
     select count(1)
     from news
     where newsTitle = #{title}
-  </select>
-  <select id="selectList" resultMap="ResultMapWithBLOBs">
-    select
-    <include refid="Base_Column_List"/>
-    ,
-    <include refid="Blob_Column_List"/>
-    from news
-    order by newsID asc
-  </select>
+    </select>
+    <select id="selectList" resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from news
+        order by newsID asc
+    </select>
+    <select id="selectTitleList" resultMap="ResultTypeByTitle">
+        select
+        <include refid="Title_Column_List"/>
+        from news
+        order by newsID asc
+    </select>
 </mapper>

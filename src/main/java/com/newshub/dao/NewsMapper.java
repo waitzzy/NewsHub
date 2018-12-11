@@ -1,6 +1,7 @@
 package com.newshub.dao;
 
 import com.newshub.pojo.News;
+import com.newshub.vo.NewsTitleVo;
 
 import java.util.List;
 
@@ -22,4 +23,6 @@ public interface NewsMapper {
     int checkByTitle(String title);
 
     List<News> selectList();
+
+    List<NewsTitleVo> selectTitleList();
 }

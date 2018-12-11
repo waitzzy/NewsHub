@@ -11,9 +11,9 @@
 <head>
     <title>Title</title>
     <%-- Bootstrap --%>
-    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
     <%-- Custom styles for this template --%>
-    <link href="css/navbar-fixed-top.css" rel="stylesheet">
+    <link href="../css/navbar-fixed-top.css" rel="stylesheet">
 </head>
 <body>
 <nav class="navbar navbar-default navbar-fixed-top">
@@ -82,9 +82,9 @@
         <%--<button class="btn btn-block btn-primary" onclick="re()">返回用户管理</button>--%>
     </div>
 </div>
-<script src="js/temp.js?ver=1"></script>
+<script src="../js/temp.js?ver=1"></script>
 <%-- Bootstrap --%>
-<script src="js/jquery-3.3.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
 </body>
 </html>>

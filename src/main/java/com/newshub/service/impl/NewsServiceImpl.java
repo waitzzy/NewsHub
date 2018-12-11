@@ -6,11 +6,13 @@ import com.newshub.common.ServerResponse;
 import com.newshub.dao.NewsMapper;
 import com.newshub.pojo.News;
 import com.newshub.service.INewsService;
+import com.newshub.vo.NewsTitleVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Service("iNewService")
@@ -55,6 +57,13 @@ public class NewsServiceImpl implements INewsService {
         PageHelper.startPage(pageNum, pageSize);
         List<News> newsList = newsMapper.selectList();
         PageInfo pageInfo = new PageInfo(newsList);
+        return ServerResponse.createBySuccess(pageInfo);
+    }
+
+    public ServerResponse getTitleList(int pageNum, int pageSize){
+        PageHelper.startPage(pageNum, pageSize);
+        List<NewsTitleVo> titleList = newsMapper.selectTitleList();
+        PageInfo pageInfo = new PageInfo(titleList);
         return ServerResponse.createBySuccess(pageInfo);
     }
 }

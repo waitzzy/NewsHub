@@ -4,7 +4,6 @@ import com.newshub.common.Const;
 import com.newshub.common.ServerResponse;
 import com.newshub.pojo.User;
 import com.newshub.service.IUserService;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -12,4 +12,6 @@ public interface INewsService {
     ServerResponse changeNew(Integer id, News news);
 
     ServerResponse getNewsList(int pageNum, int pageSize);
+
+    ServerResponse getTitleList(int pageNum, int pageSize);
 }
