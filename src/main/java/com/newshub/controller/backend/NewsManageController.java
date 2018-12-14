@@ -65,13 +65,13 @@ public class NewsManageController {
 
     @RequestMapping("get_news.do")
     @ResponseBody
-    public ServerResponse getNewsList(HttpSession session, @RequestParam(value = "pageNum", defaultValue = "1") int pageNum, @RequestParam(value = "pageSize", defaultValue = "10") int pageSize){
+    public ServerResponse getNewsList(HttpSession session,@RequestParam(value = "label", defaultValue = "0") Integer label, @RequestParam(value = "pageNum", defaultValue = "1") int pageNum, @RequestParam(value = "pageSize", defaultValue = "10") int pageSize){
         User user = (User) session.getAttribute(Const.CURRENT_USER);
         if(user == null){
             return ServerResponse.createByErrorMessage("用户未登陆，请登录");
         }
         if(iUserService.checkAdminType(user).isSuccess()){
-            return iNewService.getNewsList(pageNum, pageSize);
+            return iNewService.getNewsList(label, pageNum, pageSize);
         }
         return ServerResponse.createByErrorMessage("无权限操作");
     }

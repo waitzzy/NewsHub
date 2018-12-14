@@ -9,10 +9,13 @@ public class Const {
         String TYPE_USER = "user";
     }
 
-    public interface Table{
-        Integer TABLE_COMMENT = 1;
-        Integer TABLE_HISTORY = 2;
-        Integer TABLE_NEW = 3;
-        Integer TABLE_USER = 4;
+    public interface Label{
+        Integer LABEL_TEACHING = 1;
+        Integer LABEL_ACTIVITIES = 2;
+        Integer LABEL_COMPETITION = 3;
+        Integer LABEL_SCIENCE = 4;
+        Integer LABEL_ACADEMIC = 5;
+        Integer LABEL_ABROAD = 6;
+        Integer LABEL_CAREER = 7;
     }
 }

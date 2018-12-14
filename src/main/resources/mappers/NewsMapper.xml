@@ -24,17 +24,8 @@
             <arg column="newsContent" jdbcType="LONGVARCHAR" javaType="java.lang.String"/>
         </constructor>
     </resultMap>
-    <resultMap id="ResultTypeByTitle" type="com.newshub.vo.NewsTitleVo">
-        <constructor>
-            <idArg column="newsID" jdbcType="INTEGER" javaType="java.lang.Integer"/>
-            <arg column="newsTitle" jdbcType="VARCHAR" javaType="java.lang.String"/>
-        </constructor>
-    </resultMap>
     <sql id="Base_Column_List">
         newsID, newsTitle, newsCrawlTime, newsSource, newsLabel, newsTime, update_time
-    </sql>
-    <sql id="Title_Column_List">
-        newsID, newsTitle
     </sql>
     <sql id="Blob_Column_List">
         newsContent
@@ -167,18 +158,37 @@
     from news
     where newsTitle = #{title}
     </select>
-    <select id="selectList" resultMap="ResultMapWithBLOBs">
+    <select id="selectList" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
         select
         <include refid="Base_Column_List"/>
         ,
         <include refid="Blob_Column_List"/>
         from news
+        <where>
+            <if test="label != 0">
+                and newsLabel = #{label}
+            </if>
+        </where>
         order by newsID asc
     </select>
-    <select id="selectTitleList" resultMap="ResultTypeByTitle">
+    <select id="selectFrequency" parameterType="java.lang.Integer" resultType="java.lang.String">
+        select newsLabel
+        from history, news
+        where history.userID = #{userId}
+        and history.newsID = news.newsID
+        group by newsLabel
+        order by count(newsLabel) desc
+    </select>
+    <select id="selectNotViewedList" resultMap="ResultMapWithBLOBs">
         select
-        <include refid="Title_Column_List"/>
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
         from news
-        order by newsID asc
+        where newsID not in (
+            select distinct newsID
+            from history
+            where userID = #{userId}
+        )
     </select>
 </mapper>

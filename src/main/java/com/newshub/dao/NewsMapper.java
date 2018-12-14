@@ -1,7 +1,7 @@
 package com.newshub.dao;
 
 import com.newshub.pojo.News;
-import com.newshub.vo.NewsTitleVo;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -22,7 +22,9 @@ public interface NewsMapper {
 
     int checkByTitle(String title);
 
-    List<News> selectList();
+    List<News> selectList(@Param(value = "label") Integer label);
 
-    List<NewsTitleVo> selectTitleList();
+    List<String> selectFrequency(@Param(value = "userId") Integer userId);
+
+    List<News> selectNotViewedList(@Param(value = "userId") Integer userId);
 }
