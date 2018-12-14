@@ -10,15 +10,6 @@ public class NewsTitleVo {
         return newsid;
     }
 
-    public NewsTitleVo(Integer newsid, String newstitle) {
-        this.newsid = newsid;
-        this.newstitle = newstitle;
-    }
-
-    public NewsTitleVo(){
-        super();
-    }
-
     public void setNewsid(Integer newsid) {
         this.newsid = newsid;
     }
