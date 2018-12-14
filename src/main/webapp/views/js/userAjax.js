@@ -1,11 +1,10 @@
-var signinAddress = "/newshub/views/jsp/signin.jsp";
-var  signinNoAddress = "/newshub/views/jsp/signin_no.jsp";
-
 function check() {
     var userName = $('#user')[0].value;
     console.log(userName);
     var passWord = $('#password')[0].value;
     console.log(passWord);
+    var signinAddress = "views/jsp/home.jsp";
+    var  signinNoAddress = "/newshub/views/jsp/signin_no.jsp";
     $.ajax({
         type: 'POST',
         url: 'user/login.do',
@@ -14,6 +13,7 @@ function check() {
             if (data.status == 0) {
                 window.location.href = signinAddress;
             } else {
+                alert("111");
                 window.location.href = signinNoAddress + "?msg=" + encodeURI(data.msg);
             }
         }
