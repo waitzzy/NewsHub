@@ -1,3 +1,4 @@
+
 <%@page pageEncoding="UTF-8" %>
 <html>
 <head>
@@ -7,6 +8,7 @@
     <link href="views/css/cover.css" rel="stylesheet">
     <link href="views/css/signin.css" rel="stylesheet" media="screen">
 </head>
+
 <body>
 <h2>Hello World!</h2>
 <div class="inner cover">
@@ -20,7 +22,7 @@
     </div>
 </div>
 </body>
-<script src="views/js/userAjax.js?ver=1"></script>
+<script src="views/js/userAjax.js"></script>
 <%-- Bootstrap --%>
 <script src="views/js/jquery-3.3.1.min.js"></script>
 <script src="views/js/bootstrap.min.js"></script>
@@ -34,9 +36,10 @@
             type: 'POST',
             url: 'user/login.do',
             data: 'username=' + userName + '&password=' + passWord,
+            async : false,
             success: function (data) {
                 if (data.status == 0) {
-                    window.location.href = "views/jsp/signin.jsp";
+                    window.location.href = "views/jsp/home.jsp";
                 } else {
                     window.location.href = "views/jsp/signin_no.jsp";
                 }
