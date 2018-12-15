@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: wait
+  Date: 2018/12/15
+  Time: 13:14
+  To change this template use File | Settings | File Templates.
+--%>
 <%@page pageEncoding="UTF-8" %>
 <html>
 <head>
@@ -172,9 +179,9 @@
         <div class="tpl-left-nav-list">
             <ul class="tpl-left-nav-menu">
                 <li class="tpl-left-nav-item">
-                    <a href="newsDetail.jsp" class="nav-link active">
+                    <a href="home.jsp" class="nav-link active">
                         <i class="am-icon-home"></i>
-                        <span>测试</span>
+                        <span>首页</span>
                     </a>
                 </li>
                 <li class="tpl-left-nav-item">
@@ -287,81 +294,44 @@
 
     <div class="tpl-content-wrapper">
         <div class="tpl-content-page-title">
-            新闻分类推荐网站 (四川大学)
+            新闻分类推荐网站
         </div>
         <ol class="am-breadcrumb">
-            <li><a href="#" class="am-icon-home"></a></li>
-            <li><a href="#">表单</a></li>
-            <li class="am-active">Amaze UI 表单</li>
+            <li><a href="home.jsp" class="am-icon-home">首页</a></li>
+            <li class="am-active">新闻正文</li>
         </ol>
-        <div class="tpl-portlet-components">
-            <div class="portlet-title">
-                <div class="caption font-green bold">
-                    <span class="am-icon-code"></span> 新闻列表
-                </div>
-                <div class="tpl-portlet-input tpl-fz-ml">
-                    <div class="portlet-input input-small input-inline">
-                        <div class="input-icon right">
-                            <i class="am-icon-search"></i>
-                            <input type="text" class="form-control form-control-solid" placeholder="搜索..."></div>
-                    </div>
-                </div>
-
+        <div class="tpl-content-scope">
+            <div class="note note-info">
+                <h3 id="newsTitle">TitleTest
+                    <span class="close" data-close="note"></span>
+                </h3>
+                <p>
+                    <span class="label label-success" >新闻ID</span>
+                    <span id="newsID">Amaze UI 关注中文排版，根据用户代理调整字体，实现更好的中文排版效果。</span>
+                </p>
+                <p>
+                    <span class="label label-success" >原文URL</span>
+                    <span id="newsSource">Amaze UI 关注中文排版，根据用户代理调整字体，实现更好的中文排版效果。</span>
+                </p>
+                <p>
+                    <span class="label label-success" >标签</span>
+                    <span id="newsLabel">Amaze UI 关注中文排版，根据用户代理调整字体，实现更好的中文排版效果。</span>
+                </p>
+                <p>
+                    <span class="label label-success" >发布时间</span>
+                    <span id="newsTime">1</span>
+                </p>
+                <p>
+                    <span class="label label-success" >爬取时间</span>
+                    <span id="newsCrawlTime">1</span>
+                </p>
+                <p id = 'newsContent'> Amaze UI 含近 20 个 CSS 组件、20 余 JS 组件，更有多个包含不同主题的 Web 组件，可快速构建界面出色、体验优秀的跨屏页面，大幅提升开发效率。</p>
 
             </div>
-            <div class="tpl-block">
-                <div class="am-g">
-                    <div class="am-u-sm-12 am-u-md-6">
-                        <div class="am-btn-toolbar">
-                            <div class="am-btn-group am-btn-group-xs">
-                                <button type="button" class="am-btn am-btn-default am-btn-success"><span
-                                        class="am-icon-plus"></span> 新增
-                                </button>
-                                <button type="button" class="am-btn am-btn-default am-btn-secondary"><span
-                                        class="am-icon-save"></span> 保存
-                                </button>
-                                <button type="button" class="am-btn am-btn-default am-btn-warning"><span
-                                        class="am-icon-archive"></span> 审核
-                                </button>
-                                <button type="button" class="am-btn am-btn-default am-btn-danger"><span
-                                        class="am-icon-trash-o"></span> 删除
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="am-u-sm-12 am-u-md-3">
-                        <div class="am-form-group">
-                            <select data-am-selected="{btnSize: 'sm'}">
-                                <option value="option1">所有类别</option>
-                                <option value="option2">IT业界</option>
-                                <option value="option3">数码产品</option>
-                                <option value="option3">笔记本电脑</option>
-                                <option value="option3">平板电脑</option>
-                                <option value="option3">只能手机</option>
-                                <option value="option3">超极本</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="am-u-sm-12 am-u-md-3">
-                        <div class="am-input-group am-input-group-sm">
-                            <input type="text" class="am-form-field">
-                            <span class="am-input-group-btn">
-            <button class="am-btn  am-btn-default am-btn-success tpl-am-btn-success am-icon-search"
-                    type="button"></button>
-          </span>
-                        </div>
-                    </div>
-                </div>
-
-                <ul class="tpl-task-list tpl-task-remind" id="news_title_list">
-
-
-                    <!-- 新闻显示 -->
-                </ul>
-            </div>
-
         </div>
     </div>
+
+
 </div>
 
 </body>
@@ -369,14 +339,48 @@
 <script src="../assets/js/jquery.min.js"></script>
 <script src="../assets/js/amazeui.min.js"></script>
 <script src="../assets/js/app.js"></script>
-<script>
-    function viewDetail(obj){
-        alert(obj.id);
-        var id = obj.id;
-        //var s = document.getElementById("news");
-        location.href="newsDetail.jsp"+"?"+"newsId="+id;
-    }
-</script>
+
+<script >
+
+    var loc = location.href;
+    alert(loc)
+    var n1 = loc.length;//地址的总长度
+    var n2 = loc.indexOf("=");//取得=号的位置
+    var id = decodeURI(loc.substr(n2+1, n1-n2));//从=号后面的内容
+    alert(id);
+
+    var URL ='../../news/get_detail_news.do'+'?'+'newsId='+id;
+    $.ajax({
+        url: URL,
+        type:'POST',
+        detaType:'json',
+        data:{},
+        async: false,
+        success:function (obj) {
+            if(obj.status == 0){
+                alert("success");
+                document.getElementById("newsTitle").innerHTML=obj.data.newstitle;
+                document.getElementById("newsID").innerHTML=obj.data.newsid;
+                document.getElementById("newsSource").innerHTML=obj.data.newssource;
+                document.getElementById("newsLabel").innerHTML=obj.data.newslabel;
+                document.getElementById("newsTime").innerHTML=obj.data.newstime;
+                document.getElementById("newsCrawlTime").innerHTML=obj.data.newscrawltime;
+                document.getElementById("newsContent").innerHTML=obj.data.newscontent;
+            }else if(obj.status ==1){
+                alert("发生错误");
+            }
+        },
+        error:function (XMLHttpRequest, textStatus, errorThrown) {
+            alert(XMLHttpRequest.status);
+            alert(XMLHttpRequest.readyState);
+            alert(textStatus);
+        }
+    })
+    //document.write(id)
+
+</script>>
+
+
 <script>
     function displayNews(e){
         var id = $(e).text();
@@ -411,18 +415,17 @@
                                 "                        <i class=\"am-icon-plus\"></i>\n" +
                                 "                      </span>\n" +
                                 "\n" +
-                                "                            <span onclick=\"viewDetail(this)\" id="+data.data.list[i].newsid+"> "+
+                                "                            <span id="+data.data.list[i].newsid+"> "+
                                 data.data.list[i].newstitle+"</span>\n" +
                                 "                        </div>\n" +
                                 "\n" +
                                 "                    </li>";
-                            alert(html);
                             $("#news_title_list").append(html);
                         }
 
                     }else if (data.status == 1)
                     {
-                       alert(data.toString()) ;
+                        alert(data.toString()) ;
                     }
                 },
                 error:function (XMLHttpRequest, textStatus, errorThrown) {
@@ -461,12 +464,12 @@
                             "                        <i class=\"am-icon-plus\"></i>\n" +
                             "                      </span>\n" +
                             "\n" +
-                            "                            <span onclick=\"viewDetail(this)\" id="+data.data.list[i].newsid+"> "+
+                            "                            <span id="+data.data.list[i].newsid+"> "+
                             data.data.list[i].newstitle+"</span>\n" +
                             "                        </div>\n" +
                             "\n" +
                             "                    </li>";
-                        alert(html);
+                        //alert(html);
                         $("#news_title_list").append(html);
                     }
                 }
@@ -478,55 +481,5 @@
             }
         })
     })
-</script>
-</html>
-
-
-<!--
-
-<html>
-<head>
-<title>Title</title>
-<%-- Bootstrap --%>
-<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-<%-- Custom styles for this template --%>
-<link href="css/navbar-fixed-top.css" rel="stylesheet">
-</head>
-<body>
-<h2>Hello World!</h2>
-<div class="inner cover">
-<div class="form-signin">
-<h2 class="form-signin-heading">请填写信息</h2>
-<input type="text" id="user" class="form-control" placeholder="用户名" required autofocus>
-<input type="password" id="password" class="form-control" placeholder="密码" required autofocus>
-<div class="span12"><br></div>
-<button class="btn btn-lg btn-primary btn-block" onclick="check()">登陆</button>
-<button class="btn btn-lg btn-warning btn-block">注册</button>
-</div>
-</div>
-</body>
-<script src="views/js/userAjax.js?ver=1"></script>
-<%-- Bootstrap --%>
-<script src="views/js/jquery-3.3.1.min.js"></script>
-<script src="views/js/bootstrap.min.js"></script>
-<script>
-function check() {
-var userName = $('#user')[0].value;
-console.log(userName);
-var passWord = $('#password')[0].value;
-console.log(passWord);
-$.ajax({
-type: 'POST',
-url: 'user/login.do',
-data: 'username=' + userName + '&password=' + passWord,
-success: function (data) {
-if (data.status == 0) {
-window.location.href = "views/jsp/signin.jsp";
-} else {
-window.location.href = "views/jsp/signin_no.jsp";
-}
-}
-});
-}
 </script>
 </html>
