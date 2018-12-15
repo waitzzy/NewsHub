@@ -11,7 +11,7 @@
         data: 'username=' + userName + '&password=' + passWord,
         success: function (data) {
             if (data.status == 0) {
-                window.location.href = signinAddress;
+                sessionStorage.setItem('userInfo', JSON.stringify(data));
             } else {
                 alert("111");
                 window.location.href = signinNoAddress + "?msg=" + encodeURI(data.msg);
