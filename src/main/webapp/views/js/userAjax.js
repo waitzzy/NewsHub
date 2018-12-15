@@ -1,4 +1,4 @@
-function check() {
+﻿function check() {
     var userName = $('#user')[0].value;
     console.log(userName);
     var passWord = $('#password')[0].value;

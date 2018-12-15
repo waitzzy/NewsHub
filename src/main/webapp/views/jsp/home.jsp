@@ -10,7 +10,8 @@
 
 </head>
 <body data-type="generalComponents">
-
+<%@ include file="header.jsp" %>
+<!--
 <header class="am-topbar am-topbar-inverse admin-header">
     <div class="am-topbar-brand">
         <a href="javascript:;" class="tpl-logo">
@@ -157,6 +158,7 @@
         </ul>
     </div>
 </header>
+-->
 
 
 
@@ -164,6 +166,9 @@
 
 
 <div class="tpl-page-container tpl-page-header-fixed">
+
+    <%@ include file="leftNav.jsp" %>
+<!--
 
     <div class="tpl-left-nav tpl-left-nav-hover">
         <div class="tpl-left-nav-title">
@@ -271,19 +276,19 @@
                         </li>
                     </ul>
                 </li>
-                <!--
-                                <li class="tpl-left-nav-item">
-                                    <a href="login.html" class="nav-link tpl-left-nav-link-list">
-                                        <i class="am-icon-key"></i>
-                                        <span>首页</span>
-                                    </a>
-                                </li>
-                                -->
+
+                                //<li class="tpl-left-nav-item">
+                                //    <a href="login.html" class="nav-link tpl-left-nav-link-list">
+                               //         <i class="am-icon-key"></i>
+                                //        <span>首页</span>
+                            //        </a>
+                           //     </li>
+
             </ul>
         </div>
     </div>
 
-
+-->
 
     <div class="tpl-content-wrapper">
         <div class="tpl-content-page-title">
@@ -329,19 +334,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="am-u-sm-12 am-u-md-3">
-                        <div class="am-form-group">
-                            <select data-am-selected="{btnSize: 'sm'}">
-                                <option value="option1">所有类别</option>
-                                <option value="option2">IT业界</option>
-                                <option value="option3">数码产品</option>
-                                <option value="option3">笔记本电脑</option>
-                                <option value="option3">平板电脑</option>
-                                <option value="option3">只能手机</option>
-                                <option value="option3">超极本</option>
-                            </select>
-                        </div>
-                    </div>
+
                     <div class="am-u-sm-12 am-u-md-3">
                         <div class="am-input-group am-input-group-sm">
                             <input type="text" class="am-form-field">
@@ -369,164 +362,6 @@
 <script src="../assets/js/jquery.min.js"></script>
 <script src="../assets/js/amazeui.min.js"></script>
 <script src="../assets/js/app.js"></script>
-<script>
-    function viewDetail(obj){
-        alert(obj.id);
-        var id = obj.id;
-        //var s = document.getElementById("news");
-        location.href="newsDetail.jsp"+"?"+"newsId="+id;
-    }
-</script>
-<script>
-    function displayNews(e){
-        var id = $(e).text();
-        if(id == "教学"){ id=1;}
-        else if(id == "活动"){ id =2;}
-        else if(id == "竞赛"){ id =3;}
-        else if(id == "科研"){ id =4;}
-        else if(id == "学术"){ id =5;}
-        else if(id == "国际"){ id =6;}
-        else if(id == "就业"){ id =7;}
+<script src="../js/newsAjax.js?"></script>
 
-        var URL = '../../news/get_title_list.do'+'?'+'label='+id.toString();
-        //alert(URL);
-        $.ajax({
-                url: URL,
-                type: 'POST',
-                dataType : 'json',
-                data:{},
-                async: false,
-                success:function (data) {
-                    if(data.status == 0 ){
-                        document.getElementById("news_title_list").innerHTML='';
-                        var html ="";
-                        for (var i = 0; i < data.data.pageSize; i++)
-                        {
-                            html="                    <li>\n" +
-                                "                        <div class=\"cosB\">\n" +
-                                "                            1天前\n" +
-                                "                        </div>\n" +
-                                "                        <div class=\"cosA\">\n" +
-                                "                                <span class=\"cosIco label-warning\">\n" +
-                                "                        <i class=\"am-icon-plus\"></i>\n" +
-                                "                      </span>\n" +
-                                "\n" +
-                                "                            <span onclick=\"viewDetail(this)\" id="+data.data.list[i].newsid+"> "+
-                                data.data.list[i].newstitle+"</span>\n" +
-                                "                        </div>\n" +
-                                "\n" +
-                                "                    </li>";
-                            alert(html);
-                            $("#news_title_list").append(html);
-                        }
-
-                    }else if (data.status == 1)
-                    {
-                       alert(data.toString()) ;
-                    }
-                },
-                error:function (XMLHttpRequest, textStatus, errorThrown) {
-                    alert(XMLHttpRequest.status);
-                    alert(XMLHttpRequest.readyState);
-                    alert(textStatus);
-                }
-            }
-        )
-
-    }
-</script>
-<script>
-    $(document).ready(function () {
-        $.ajax({
-            url: '../../news/get_title_list.do',//URL是巨坑！！！
-            type: 'POST',//请求方式
-            dataType: 'json',
-            data: {},
-            async: false,//是否异步请求
-            success: function (data) {   //如果请求成功，返回数据。
-                if (data.status == 1) {
-                    alert("请登录后再使用!");
-                } else if (data.status == 0) {
-                    //var json= JSON.stringify(data);
-                    //alert(json);
-                    var html ="";
-                    for (var i = 0; i < data.data.pageSize; i++)
-                    {
-                        html="                    <li>\n" +
-                            "                        <div class=\"cosB\">\n" +
-                            "                            1天前\n" +
-                            "                        </div>\n" +
-                            "                        <div class=\"cosA\">\n" +
-                            "                                <span class=\"cosIco label-warning\">\n" +
-                            "                        <i class=\"am-icon-plus\"></i>\n" +
-                            "                      </span>\n" +
-                            "\n" +
-                            "                            <span onclick=\"viewDetail(this)\" id="+data.data.list[i].newsid+"> "+
-                            data.data.list[i].newstitle+"</span>\n" +
-                            "                        </div>\n" +
-                            "\n" +
-                            "                    </li>";
-                        alert(html);
-                        $("#news_title_list").append(html);
-                    }
-                }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                alert(XMLHttpRequest.status);
-                alert(XMLHttpRequest.readyState);
-                alert(textStatus);
-            }
-        })
-    })
-</script>
-</html>
-
-
-<!--
-
-<html>
-<head>
-<title>Title</title>
-<%-- Bootstrap --%>
-<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-<%-- Custom styles for this template --%>
-<link href="css/navbar-fixed-top.css" rel="stylesheet">
-</head>
-<body>
-<h2>Hello World!</h2>
-<div class="inner cover">
-<div class="form-signin">
-<h2 class="form-signin-heading">请填写信息</h2>
-<input type="text" id="user" class="form-control" placeholder="用户名" required autofocus>
-<input type="password" id="password" class="form-control" placeholder="密码" required autofocus>
-<div class="span12"><br></div>
-<button class="btn btn-lg btn-primary btn-block" onclick="check()">登陆</button>
-<button class="btn btn-lg btn-warning btn-block">注册</button>
-</div>
-</div>
-</body>
-<script src="views/js/userAjax.js?ver=1"></script>
-<%-- Bootstrap --%>
-<script src="views/js/jquery-3.3.1.min.js"></script>
-<script src="views/js/bootstrap.min.js"></script>
-<script>
-function check() {
-var userName = $('#user')[0].value;
-console.log(userName);
-var passWord = $('#password')[0].value;
-console.log(passWord);
-$.ajax({
-type: 'POST',
-url: 'user/login.do',
-data: 'username=' + userName + '&password=' + passWord,
-success: function (data) {
-if (data.status == 0) {
-window.location.href = "views/jsp/signin.jsp";
-} else {
-window.location.href = "views/jsp/signin_no.jsp";
-}
-}
-});
-}
-</script>
 </html>
