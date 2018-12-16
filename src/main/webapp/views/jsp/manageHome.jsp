@@ -25,13 +25,8 @@
 
     <div class="tpl-content-wrapper">
         <div class="tpl-content-page-title">
-            新闻分类推荐网站 (四川大学)
+            新闻分类推荐网站 (四川大学) 管理员
         </div>
-        <ol class="am-breadcrumb">
-            <li><a href="#" class="am-icon-home"></a></li>
-            <li><a href="#">表单</a></li>
-            <li class="am-active">Amaze UI 表单</li>
-        </ol>
         <div class="tpl-portlet-components">
             <div class="portlet-title">
                 <div class="caption font-green bold">
