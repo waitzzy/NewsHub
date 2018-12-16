@@ -131,23 +131,27 @@
                 var userInfo = sessionStorage.getItem('userInfo');
                 console.log(userInfo);
                 userinfo = JSON.parse(userInfo);//取值时：把获取到的Json字符串转换回对象
-                var userID = userinfo.data.userid;
+                var userID = parseInt(userinfo.data.userid);
                 var userName = userinfo.data.username;
 
+                alert(userID+userName+password2);
+                var URL = "../../manage/change_user.do";
                 $.ajax({
                     type: 'POST',
-                    url: '../../manage/change_user.do',
-                    dataType:'json',
-                    data: {'id':userID,
+                    url: URL,
+                    dataType : 'json',
+                    data: {
+                        'id':userID,
                         'username':userName,
                         'password':password2
                     },
                     //data: 'username=' + userName + '&password=' + passWord,
                     async: false,
                     success: function (data) {
-                        if (data.status!= 0) {
-                            alert("修改密码失败");
+                        if (data.status != 0) {
+                            alert(data.msg);
                         } else {
+                            alert("修改成功，请重新登录!");
                             alert(data.msg);
                             window.location.href = "WEB-INF/index.jsp";
                         }

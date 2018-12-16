@@ -114,34 +114,49 @@
             data: {},
             async: false,//是否异步请求
             success: function (data) {
-                //如果请求成功，返回数据。
                 if (data.status == 1) {
                     alert("请登录后再使用!");
                 } else if (data.status == 0) {
-                    //var json= JSON.stringify(data);
-                    //alert(json);
+                    var json= JSON.stringify(data);
+                    alert(json);
                     var html ="";
                     for (var i = 0; i < data.data.pageSize; i++)
                     {
+
+                        var username = data.data.list[i].username;
+                        var userid = data.data.list[i].userid;
+                        var usertype =data.data.list[i].usertype;
+                        var password = data.data.list[i].password;
+                        var logintime = data.data.list[i].logintime;
+                        var createtime = data.data.list[i].createtime;
+
                         html="                                <tr>\n" +
                             "                                    <td><input type=\"checkbox\"></td>\n" +
-                            "                                    <td>"+data.data.list[i].userid+"</td>\n" +
-                            "                                    <td>"+data.data.list[i].username+"</td>\n" +
-                            "                                    <td>"+data.data.list[i].usertype+"</td>\n" +
-                            "                                    <td>"+data.data.list[i].password+"</td>\n" +
-                            "                                    <td class=\"am-hide-sm-only\">"+data.data.list[i].logintime+"</td>\n" +
-                            "                                    <td class=\"am-hide-sm-only\">"+data.data.list[i].createtime+"</td>\n" +
+                            "                                    <td>"+userid+"</td>\n" +
+                            "                                    <td>"+username+"</td>\n" +
+                            "                                    <td>"+usertype+"</td>\n" +
+                            "                                    <td>"+password+"</td>\n" +
+                            "                                    <td class=\"am-hide-sm-only\">"+logintime+"</td>\n" +
+                            "                                    <td class=\"am-hide-sm-only\">"+createtime+"</td>\n" +
                             "                                    <td>\n" +
                             "                                        <div class=\"am-btn-toolbar\">\n" +
-                            "                                            <div class=\"am-btn-group am-btn-group-xs\">\n" +
-                            "                                                <button class=\"am-btn am-btn-default am-btn-xs am-text-secondary\"><span class=\"am-icon-pencil-square-o\"></span> 编辑</button>\n" +
-                            "                                                <button class=\"am-btn am-btn-default am-btn-xs am-hide-sm-only\"><span class=\"am-icon-copy\"></span> 复制</button>\n" +
-                            "                                                <button class=\"am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only\"><span class=\"am-icon-trash-o\"></span> 删除</button>\n" +
+                            "                                            <div id =\""+userid+"\" class=\"am-btn-group am-btn-group-xs\">\n" +
+                            "                                                <button onclick=\"jumpUserEdit(this)\" class=\"am-btn am-btn-default am-btn-xs am-text-secondary\"><span class=\"am-icon-pencil-square-o\"></span> 编辑</button>\n" +
+                            "                                                <button onclick=\"jumpUserAdd(this)\" class=\"am-btn am-btn-default am-btn-xs am-hide-sm-only\"><span class=\"am-icon-copy\"></span> 添加</button>\n" +
+                            "                                                <button onclick=\"jumpUserDelete(this)\" class=\"am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only\"><span class=\"am-icon-trash-o\"></span> 删除</button>\n" +
                             "                                            </div>\n" +
                             "                                        </div>\n" +
                             "                                    </td>\n" +
                             "                                </tr>"
                         alert(html);
+                        var jsondata = {"userid":userid,
+                            "username":username,
+                            "usertype":usertype,
+                            "password":password,
+                            "logintime":logintime,
+                            "createtime":createtime
+                        };//构造json给session
+                        sessionStorage.setItem(data.data.list[i].userid, JSON.stringify(jsondata));
                         $("#user_list").append(html);
                     }
                 }
@@ -154,5 +169,31 @@
         })
     });
 
+</script>
+<script>
+    function jumpUserEdit(obj){
+        var id=$(obj).parent().attr("id");
+        var URL = "userEdit.jsp"+"?"+"id="+id;
+        alert(URL);
+        window.location.href= URL;
+        window.event.returnValue=false;
+    }
+</script>
+<script>
+    function jumpUserDelete(obj){
+        var id=$(obj).parent().attr('id');
+        var URL = "userDelete.jsp"+"?"+"id="+id;
+        alert(URL);
+        window.location.href= URL;
+        window.event.returnValue=false;
+    }
+</script>
+<script>
+    function jumpUserAdd(obj){
+        var URL = "userAdd.jsp";
+        alert(URL);
+        window.location.href= URL;
+        window.event.returnValue=false;
+    }
 </script>
 </html>
