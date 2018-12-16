@@ -72,6 +72,7 @@
                                     <th class="table-id">分类标签</th>
                                     <th class="table-author am-hide-sm-only">新闻时间</th>
                                     <th class="table-date am-hide-sm-only">爬取时间</th>
+                                    <th class="table-date am-hide-sm-only">更新时间</th>
                                     <th class="table-set">操作</th>
                                 </tr>
                                 </thead>
@@ -130,6 +131,13 @@
                     var html ="";
                     for (var i = 0; i < data.data.pageSize; i++)
                     {
+                        var newsid = data.data.list[i].newsid;
+                        var newstitle = data.data.list[i].newstitle;
+                        var newssource =data.data.list[i].newssource;
+                        var newslabel = data.data.list[i].password;
+                        var newstime = data.data.list[i].newstime;
+                        var newscrawltime = data.data.list[i].newscrawltime;
+                        var updatetime = data.data.list[i].updatetime;
                         html="                                <tr>\n" +
                             "                                    <td><input type=\"checkbox\"></td>\n" +
                             "                                    <td>"+data.data.list[i].newsid+"</td>\n" +
@@ -138,17 +146,27 @@
                             "                                    <td>"+data.data.list[i].newslabel+"</td>\n" +
                             "                                    <td class=\"am-hide-sm-only\">"+data.data.list[i].newstime+"</td>\n" +
                             "                                    <td class=\"am-hide-sm-only\">"+data.data.list[i].newscrawltime+"</td>\n" +
+                            "                                    <td class=\"am-hide-sm-only\">"+data.data.list[i].updatetime+"</td>\n" +
                             "                                    <td>\n" +
                             "                                        <div class=\"am-btn-toolbar\">\n" +
-                            "                                            <div class=\"am-btn-group am-btn-group-xs\">\n" +
-                            "                                                <button class=\"am-btn am-btn-default am-btn-xs am-text-secondary\"><span class=\"am-icon-pencil-square-o\"></span> 编辑</button>\n" +
-                            "                                                <button class=\"am-btn am-btn-default am-btn-xs am-hide-sm-only\"><span class=\"am-icon-copy\"></span> 复制</button>\n" +
-                            "                                                <button class=\"am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only\"><span class=\"am-icon-trash-o\"></span> 删除</button>\n" +
+                            "                                            <div id =\""+newsid+"\" class=\"am-btn-group am-btn-group-xs\">\n" +
+                            "                                                <button onclick=\"jumpNewsEdit(this)\" class=\"am-btn am-btn-default am-btn-xs am-text-secondary\"><span class=\"am-icon-pencil-square-o\"></span> 编辑</button>\n" +
+                            "                                                <button onclick=\"jumpNewsAdd(this)\" class=\"am-btn am-btn-default am-btn-xs am-hide-sm-only\"><span class=\"am-icon-copy\"></span> 添加</button>\n" +
+                            "                                                <button onclick=\"jumpNewsDelete(this)\" class=\"am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only\"><span class=\"am-icon-trash-o\"></span> 删除</button>\n" +
                             "                                            </div>\n" +
                             "                                        </div>\n" +
                             "                                    </td>\n" +
                             "                                </tr>"
                         alert(html);
+                        var jsondata1 = {"newsid":newsid,
+                            "newstitle":newstitle,
+                            "newslabel":newslabel,
+                            "newssource":newssource,
+                            "newstime":newstime,
+                            "newscrawltime":newscrawltime,
+                            "updatetime":updatetime
+                        };//构造json给session
+                        sessionStorage.setItem(newsid, JSON.stringify(jsondata1));
                         $("#news_list").append(html);
                     }
                 }
@@ -161,5 +179,31 @@
         })
     });
 
+</script>
+<script>
+    function jumpNewsEdit(obj){
+        var id=$(obj).parent().attr("id");
+        var URL = "newsEdit.jsp"+"?"+"id="+id;
+        alert(URL);
+        window.location.href= URL;
+        window.event.returnValue=false;
+    }
+</script>
+<script>
+    function jumpNewsDelete(obj){
+        var id=$(obj).parent().attr('id');
+        var URL = "newsDelete.jsp"+"?"+"id="+id;
+        alert(URL);
+        window.location.href= URL;
+        window.event.returnValue=false;
+    }
+</script>
+<script>
+    function jumpNewsAdd(obj){
+        var URL = "newsAdd.jsp";
+        alert(URL);
+        window.location.href= URL;
+        window.event.returnValue=false;
+    }
 </script>
 </html>
