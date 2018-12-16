@@ -5,7 +5,7 @@
         <constructor>
             <idArg column="newsID" jdbcType="INTEGER" javaType="java.lang.Integer"/>
             <arg column="newsTitle" jdbcType="VARCHAR" javaType="java.lang.String"/>
-            <arg column="newsCrawlTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+            <arg column="newsCrawlTime" jdbcType="VARCHAR" javaType="java.lang.String"/>
             <arg column="newsSource" jdbcType="VARCHAR" javaType="java.lang.String"/>
             <arg column="newsLabel" jdbcType="VARCHAR" javaType="java.lang.String"/>
             <arg column="newsTime" jdbcType="VARCHAR" javaType="java.lang.String"/>
@@ -16,7 +16,7 @@
         <constructor>
             <idArg column="newsID" jdbcType="INTEGER" javaType="java.lang.Integer"/>
             <arg column="newsTitle" jdbcType="VARCHAR" javaType="java.lang.String"/>
-            <arg column="newsCrawlTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+            <arg column="newsCrawlTime" jdbcType="VARCHAR" javaType="java.lang.String"/>
             <arg column="newsSource" jdbcType="VARCHAR" javaType="java.lang.String"/>
             <arg column="newsLabel" jdbcType="VARCHAR" javaType="java.lang.String"/>
             <arg column="newsTime" jdbcType="VARCHAR" javaType="java.lang.String"/>
@@ -112,7 +112,7 @@
                 newsTitle = #{newstitle,jdbcType=VARCHAR},
             </if>
             <if test="newscrawltime != null">
-                newsCrawlTime = #{newscrawltime,jdbcType=TIMESTAMP},
+                newsCrawlTime = #{newscrawltime,jdbcType=VARCHAR},
             </if>
             <if test="newssource != null">
                 newsSource = #{newssource,jdbcType=VARCHAR},
@@ -135,7 +135,7 @@
     <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.newshub.pojo.News">
     update news
     set newsTitle = #{newstitle,jdbcType=VARCHAR},
-      newsCrawlTime = #{newscrawltime,jdbcType=TIMESTAMP},
+      newsCrawlTime = #{newscrawltime,jdbcType=VARCHAR},
       newsSource = #{newssource,jdbcType=VARCHAR},
       newsLabel = #{newslabel,jdbcType=VARCHAR},
       newsTime = #{newstime,jdbcType=VARCHAR},
@@ -146,7 +146,7 @@
     <update id="updateByPrimaryKey" parameterType="com.newshub.pojo.News">
     update news
     set newsTitle = #{newstitle,jdbcType=VARCHAR},
-      newsCrawlTime = #{newscrawltime,jdbcType=TIMESTAMP},
+      newsCrawlTime = #{newscrawltime,jdbcType=VARCHAR},
       newsSource = #{newssource,jdbcType=VARCHAR},
       newsLabel = #{newslabel,jdbcType=VARCHAR},
       newsTime = #{newstime,jdbcType=VARCHAR},

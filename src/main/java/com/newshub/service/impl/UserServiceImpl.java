@@ -87,6 +87,18 @@ public class UserServiceImpl implements IUserService {
         return ServerResponse.createBySuccessMessage("更新成功");
     }
 
+    public ServerResponse changeInfor(Integer id, String userName, String passWord){
+        User user = new User();
+        user.setUsername(userName);
+        user.setPassword(passWord);
+        user.setUserid(id);
+        int resultCount = userMapper.updateByPrimaryKeySelective(user);
+        if (resultCount == 0){
+            return ServerResponse.createByErrorMessage("更新失败");
+        }
+        return ServerResponse.createBySuccessMessage("更新成功");
+    }
+
     public ServerResponse getUserList(int pageNum, int pageSize){
         PageHelper.startPage(pageNum, pageSize);
         List<User> userList = userMapper.selectList();
