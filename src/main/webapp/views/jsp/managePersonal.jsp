@@ -11,7 +11,7 @@
 </head>
 <body data-type="generalComponents">
 
-<%@ include file="header.jsp" %>
+<%@ include file="manageHeader.jsp" %>
 
 <div class="tpl-page-container tpl-page-header-fixed">
 
@@ -86,12 +86,9 @@
                                     <a id="updatetime" class="am-u-sm-3 am-form-label"> 1daaaffa23</a>
                                 </div>
                             </div>
-
-
-
                             <div class="am-form-group">
                                 <div class="am-u-sm-9 am-u-sm-push-3">
-                                    <button href="home.jsp" type="button" class="am-btn am-btn-primary tpl-btn-bg-color-success ">确认</button>
+                                    <button href="manageHome.jsp" type="button" class="am-btn am-btn-primary tpl-btn-bg-color-success ">确认</button>
                                 </div>
                             </div>
                         </form>
@@ -104,7 +101,6 @@
 
 
     </div>
-
 
 </div>
 
@@ -120,7 +116,6 @@
     $(document).ready(function () {
         var userInfo = sessionStorage.getItem('userInfo');
         console.log(userInfo);
-        alert("damn");
         userinfo = JSON.parse(userInfo);
         //取值时：把获取到的Json字符串转换回对象
         document.getElementById("userid").innerText=userinfo.data.userid;

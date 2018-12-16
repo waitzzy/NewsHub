@@ -109,7 +109,7 @@
 
 
         $.ajax({
-            url: '../../news/get_title_list.do',//URL是巨坑！！！
+            url: '../../news/get_title_list.do'+'?'+'label='+id,//URL是巨坑！！！
             type: 'POST',//请求方式
             dataType: 'json',
             data: {},

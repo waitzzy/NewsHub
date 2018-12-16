@@ -38,11 +38,15 @@
             data: 'username=' + userName + '&password=' + passWord,
             async : false,
             success: function (data) {
-                if (data.status == 0) {
-                    sessionStorage.setItem('userInfo', JSON.stringify(data));
-                    window.location.href = "views/jsp/home.jsp";
-                } else {
+                if (data.status != 0) {
                     window.location.href = "views/jsp/signin_no.jsp";
+                } else {
+                    sessionStorage.setItem('userInfo', JSON.stringify(data));
+                    if (data.data.usertype == "user") {
+                        window.location.href = "views/jsp/home.jsp";
+                    } else if (data.data.usertype == "admin") {
+                        window.location.href = "views/jsp/manageHome.jsp";
+                    } else{alert("error");}
                 }
             }
         });
