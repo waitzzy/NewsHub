@@ -25,8 +25,6 @@
 
     <%@ include file="leftNav.jsp" %>
 
-
-
     <div class="tpl-content-wrapper">
         <div class="tpl-content-page-title">
             新闻分类推荐网站
@@ -37,30 +35,41 @@
         </ol>
         <div class="tpl-content-scope">
             <div class="note note-info">
-                <h3 id="newsTitle">TitleTest
+                <h3 id="newsTitle">
                     <span class="close" data-close="note"></span>
                 </h3>
+
                 <p>
-                    <span class="label label-success" >新闻ID</span>
-                    <span id="newsID">Amaze UI 关注中文排版，根据用户代理调整字体，实现更好的中文排版效果。</span>
+                    <span class="label label-danger" >新闻ID</span>
+                    <span id="newsID"></span>
                 </p>
+
                 <p>
                     <span class="label label-success" >原文URL</span>
-                    <span id="newsSource">Amaze UI 关注中文排版，根据用户代理调整字体，实现更好的中文排版效果。</span>
+                    <span id="newsSource"></span>
                 </p>
+
                 <p>
-                    <span class="label label-success" >标签</span>
-                    <span id="newsLabel">Amaze UI 关注中文排版，根据用户代理调整字体，实现更好的中文排版效果。</span>
+                    <span class="label label-warning" >标签</span>
+                    <span id="newsLabel"></span>
                 </p>
+
                 <p>
-                    <span class="label label-success" >发布时间</span>
-                    <span id="newsTime">1</span>
+                    <span class="label label-danger" >发布时间</span>
+                    <span id="newsTime"></span>
                 </p>
+
                 <p>
                     <span class="label label-success" >爬取时间</span>
-                    <span id="newsCrawlTime">1</span>
+                    <span id="newsCrawlTime"></span>
                 </p>
-                <p id = 'newsContent'> Amaze UI 含近 20 个 CSS 组件、20 余 JS 组件，更有多个包含不同主题的 Web 组件，可快速构建界面出色、体验优秀的跨屏页面，大幅提升开发效率。</p>
+
+                <p>
+                    <span class="label label-warning" >更新时间</span>
+                    <span id="updateTime"></span>
+                </p>
+
+                <p id = 'newsContent'></p>
 
             </div>
         </div>
@@ -75,8 +84,8 @@
 <script src="../assets/js/amazeui.min.js"></script>
 <script src="../assets/js/app.js"></script>
 
+<script src="../js/dataTransfer.js" type="text/javascript" language="javascript" charset="utf-8"></script>
 <script >
-
     var loc = location.href;
     alert(loc)
     var n1 = loc.length;//地址的总长度
@@ -93,16 +102,21 @@
         async: false,
         success:function (obj) {
             if(obj.status == 0){
-                alert("success");
+                //alert("success");
+                var label = obj.data.newslabel;
+                var newscrawltime = obj.data.newscrawltime;
+                var updatetime = obj.data.updatetime;
+                alert(label + numToLabel(label));
                 document.getElementById("newsTitle").innerHTML=obj.data.newstitle;
                 document.getElementById("newsID").innerHTML=obj.data.newsid;
                 document.getElementById("newsSource").innerHTML=obj.data.newssource;
-                document.getElementById("newsLabel").innerHTML=obj.data.newslabel;
-                document.getElementById("newsTime").innerHTML=obj.data.newstime;
-                document.getElementById("newsCrawlTime").innerHTML=obj.data.newscrawltime;
+                document.getElementById("newsLabel").innerHTML=numToLabel(label);
+                document.getElementById("newsTime").innerHTML= obj.data.newstime;
+                document.getElementById("newsCrawlTime").innerHTML= timeFormat(newscrawltime);
+                document.getElementById("updateTime").innerHTML= timeFormat(updatetime);
                 document.getElementById("newsContent").innerHTML=obj.data.newscontent;
-            }else if(obj.status ==1){
-                alert("发生错误");
+            }else if(obj.status == 1){
+                alert(obj.msg);
             }
         },
         error:function (XMLHttpRequest, textStatus, errorThrown) {
@@ -111,9 +125,10 @@
             alert(textStatus);
         }
     })
-    //document.write(id)
 
-</script>>
+</script>
 
 <script src="../js/newsAjax.js"></script>
+
+
 </html>

@@ -110,7 +110,8 @@
 <script src="../assets/js/amazeui.min.js"></script>
 <script src="../assets/js/app.js"></script>
 
-<script src="../js/newsAjax.js?"></script>
+<script src="../js/newsAjax.js"></script>
+<script src="../js/dataTransfer.js"></script>
 <script>
 
     $(document).ready(function () {
@@ -118,11 +119,14 @@
         console.log(userInfo);
         userinfo = JSON.parse(userInfo);
         //取值时：把获取到的Json字符串转换回对象
+        var logintime = userinfo.data.logintime;
+        var createtime = userinfo.data.createtime;
+        var updatetime = userinfo.data.updatetime;
         document.getElementById("userid").innerText=userinfo.data.userid;
         document.getElementById("username").innerText=userinfo.data.username;
-        document.getElementById("logintime").innerText=userinfo.data.logintime;
-        document.getElementById("createtime").innerText=userinfo.data.createtime;
-        document.getElementById("updatetime").innerText=userinfo.data.updatetime;
+        document.getElementById("logintime").innerText= timeFormat(logintime);
+        document.getElementById("createtime").innerText= timeFormat(createtime);
+        document.getElementById("updatetime").innerText= timeFormat(updatetime);
     });
 </script>
 <script>
