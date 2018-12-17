@@ -1,79 +1,175 @@
 <%@page pageEncoding="UTF-8" %>
+<!doctype html>
 <html>
 <head>
     <title>Title</title>
     <%-- Bootstrap --%>
-    <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
     <%-- Custom styles for this template --%>
-    <link href="../css/cover.css" rel="stylesheet">
-    <link href="../css/signin.css" rel="stylesheet" media="screen">
     <link rel="stylesheet" href="../assets/css/amazeui.min.css"/>
     <link rel="stylesheet" href="../assets/css/admin.css">
     <link rel="stylesheet" href="../assets/css/app.css">
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                        aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="home.jsp">NewsHub</a>
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                            aria-haspopup="true" aria-expanded="false">按内容分类
-                            <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/views/admin/###.jsp">教学</a></li>
-                            <li><a href="/views/admin/###.jsp">活动</a></li>
-                            <li><a href="/views/admin/###.jsp">竞赛</a></li>
-                            <li><a href="/views/admin/###.jsp">科研</a></li>
-                            <li><a href="/views/admin/###.jsp">学术</a></li>
-                            <li><a href="/views/admin/###.jsp">留学</a></li>
-                            <li><a href="/views/admin/###.jsp">就业</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                            aria-haspopup="true" aria-expanded="false">按来源分类
-                        <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/views/admin/###.jsp">教务处</a></li>
-                            <li><a href="/views/admin/###.jsp">学工部</a></li>
-                            <li><a href="/views/admin/###.jsp">青春川大</a></li>
-                            <li><a href="/views/admin/###.jsp">就业网</a></li>
-                            <li><a href="/views/admin/###.jsp">招生网</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="false">新闻搜索 <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/views/admin/###.jsp">按时间</a></li>
-                            <li><a href="/views/admin/###.jsp">按内容</a></li>
-                            <li><a href="/views/admin/###.jsp">按来源</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="false">新闻推荐</a>
-                    </li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="personal.jsp">个人中心<span class="sr-only">(current)</span></a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+
 </head>
-<body>
+<body data-type="generalComponents">
+<%@ include file="header.jsp" %>
+<!--
+<header class="am-topbar am-topbar-inverse admin-header">
+    <div class="am-topbar-brand">
+        <a href="javascript:;" class="tpl-logo">
+            <img src="../assets/img/logo.png" alt="">
+        </a>
+    </div>
+
+    <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
+
+    <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
+
+        <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list tpl-header-list">
+            <li class="am-dropdown" data-am-dropdown data-am-dropdown-toggle>
+                <a class="am-dropdown-toggle tpl-header-list-link" href="javascript:;">
+                    <span class="am-icon-comment-o"></span> 按照类型分类 </span>
+                </a>
+                <ul class="am-dropdown-content tpl-dropdown-content">
+                    <li class="tpl-dropdown-content-external">
+                        <h3>共计 <span class="tpl-color-danger">7</span> 个分类</h3></li>
+                    <li>
+                        <a  class="tpl-dropdown-content-message">
+                                <span class="tpl-dropdown-content-photo">
+                      <img src="../assets/img/user02.png" alt=""> </span>
+                            <span class="tpl-dropdown-content-subject">
+                      <span class="tpl-dropdown-content-from" onclick = "displayNews(this)">教学</span>
+                                </span>
+                            <span class="tpl-dropdown-content-font"> 课程、考试等信息 </span>
+                        </a>
+                        <a href="#" class="tpl-dropdown-content-message">
+                                <span class="tpl-dropdown-content-photo">
+                      <img src="../assets/img/user02.png" alt=""> </span>
+                            <span class="tpl-dropdown-content-subject">
+                      <span class="tpl-dropdown-content-from" onclick = "displayNews(this)">活动</span>
+                                </span>
+                            <span class="tpl-dropdown-content-font"> 课外活动、社团活动 </span>
+                        </a>
+                        <a href="#" class="tpl-dropdown-content-message">
+                                <span class="tpl-dropdown-content-photo">
+                      <img src="../assets/img/user02.png" alt=""> </span>
+                            <span class="tpl-dropdown-content-subject">
+                      <span class="tpl-dropdown-content-from" onclick = "displayNews(this)">竞赛</span>
+                                </span>
+                            <span class="tpl-dropdown-content-font"> 各类学科竞赛信息 </span>
+                        </a>
+                        <a href="#" class="tpl-dropdown-content-message">
+                                <span class="tpl-dropdown-content-photo">
+                      <img src="../assets/img/user02.png" alt=""> </span>
+                            <span class="tpl-dropdown-content-subject">
+                      <span class="tpl-dropdown-content-from" onclick = "displayNews(this)">科研</span>
+                                </span>
+                            <span class="tpl-dropdown-content-font"> 各类论文发表、科研进展</span>
+                        </a>
+                        <a href="#" class="tpl-dropdown-content-message">
+                                <span class="tpl-dropdown-content-photo">
+                      <img src="../assets/img/user02.png" alt=""> </span>
+                            <span class="tpl-dropdown-content-subject">
+                      <span class="tpl-dropdown-content-from" onclick = "displayNews(this)">学术</span>
+                                </span>
+                            <span class="tpl-dropdown-content-font"> 学术报告、学术交流 </span>
+                        </a>
+                        <a href="#" class="tpl-dropdown-content-message">
+                                <span class="tpl-dropdown-content-photo">
+                      <img src="../assets/img/user02.png" alt=""> </span>
+                            <span class="tpl-dropdown-content-subject">
+                      <span class="tpl-dropdown-content-from" onclick = "displayNews(this)">国际</span>
+                                </span>
+                            <span class="tpl-dropdown-content-font"> 各类出国交流访问信息 </span>
+                        </a>
+                        <a href="#" class="tpl-dropdown-content-message">
+                                <span class="tpl-dropdown-content-photo">
+                      <img src="../assets/img/user02.png" alt=""> </span>
+                            <span class="tpl-dropdown-content-subject">
+                      <span class="tpl-dropdown-content-from" onclick = "displayNews(this)">就业</span>
+                                </span>
+                            <span class="tpl-dropdown-content-font"> 最新就业咨询 </span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="am-dropdown" data-am-dropdown data-am-dropdown-toggle>
+                <a class="am-dropdown-toggle tpl-header-list-link" href="javascript:;">
+                    <span class="am-icon-calendar"></span> 按照来源分类 </span>
+                </a>
+                <ul class="am-dropdown-content tpl-dropdown-content">
+                    <li class="tpl-dropdown-content-external">
+                        <h3>共有 <span class="tpl-color-primary">7</span> 个来源网站</h3></li>
+                    <li>
+                        <a href="javascript:;" class="tpl-dropdown-content-progress">
+                                <span class="task">
+                        <span class="desc">教务处 </span>
+                                </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" class="tpl-dropdown-content-progress">
+                                <span class="task">
+                        <span class="desc">学工部 </span>
+                                </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" class="tpl-dropdown-content-progress">
+                                <span class="task">
+                        <span class="desc">青春川大 </span>
+                                </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" class="tpl-dropdown-content-progress">
+                                <span class="task">
+                        <span class="desc">就业网 </span>
+                                </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" class="tpl-dropdown-content-progress">
+                                <span class="task">
+                        <span class="desc">计算机学院 </span>
+                                </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" class="tpl-dropdown-content-progress">
+                                <span class="task">
+                        <span class="desc">大学官网 </span>
+                                </span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="am-hide-sm-only"><a href="javascript:;" id="admin-fullscreen" class="tpl-header-list-link"><span class="am-icon-arrows-alt"></span> <span class="admin-fullText">开启全屏</span></a></li>
+
+            <li class="am-dropdown" data-am-dropdown data-am-dropdown-toggle>
+                <a class="am-dropdown-toggle tpl-header-list-link" href="javascript:;">
+                    <span class="tpl-header-list-user-nick">个人中心</span><span class="tpl-header-list-user-ico"> <img src="../assets/img/user01.png"></span>
+                </a>
+                <ul class="am-dropdown-content">
+                    <li><a href="personal.jsp"><span class="am-icon-bell-o"></span> 个人信息</a></li>
+                    <li><a href="changeInfo.jsp"><span class="am-icon-cog"></span> 修改密码</a></li>
+                    <li><a href="../../index.jsp"><span class="am-icon-power-off"></span> 退出账户</a></li>
+                </ul>
+            </li>
+            <li><a href="###" class="tpl-header-list-link"><span class="am-icon-sign-out tpl-header-list-ico-out-size"></span></a></li>
+        </ul>
+    </div>
+</header>
+-->
 
 
-<div class="tpl-page-container">
+
+
+
+
+<div class="tpl-page-container tpl-page-header-fixed">
+
+    <%@ include file="leftNav.jsp" %>
+<!--
 
     <div class="tpl-left-nav tpl-left-nav-hover">
         <div class="tpl-left-nav-title">
@@ -82,20 +178,20 @@
         <div class="tpl-left-nav-list">
             <ul class="tpl-left-nav-menu">
                 <li class="tpl-left-nav-item">
-                    <a href="home.jsp" class="nav-link active">
+                    <a href="newsDetail.jsp" class="nav-link active">
                         <i class="am-icon-home"></i>
-                        <span>首页</span>
+                        <span>测试</span>
                     </a>
                 </li>
                 <li class="tpl-left-nav-item">
-                <a href="http://www.scu.edu.cn" class="nav-link tpl-left-nav-link-list">
-                    <i class="am-icon-bar-chart"></i>
-                    <span>学校官网</span>
-                    <i class="tpl-left-nav-content tpl-badge-danger">
-                        hot
-                    </i>
-                </a>
-            </li>
+                    <a href="http://www.scu.edu.cn" class="nav-link tpl-left-nav-link-list">
+                        <i class="am-icon-bar-chart"></i>
+                        <span>学校官网</span>
+                        <i class="tpl-left-nav-content tpl-badge-danger">
+                            hot
+                        </i>
+                    </a>
+                </li>
                 <li class="tpl-left-nav-item">
                     <a href="http://jwc.scu.edu.cn" class="nav-link tpl-left-nav-link-list">
                         <i class="am-icon-bar-chart"></i>
@@ -166,12 +262,12 @@
                             </a>
                         </li>
                         <li>
-                        <a href="http://sw.scu.edu.cn">
-                            <i class="am-icon-angle-right"></i>
-                            <span>软件学院</span>
-                            <i class="am-icon-star tpl-left-nav-content-ico am-fr am-margin-right"></i>
-                        </a>
-                         </li>
+                            <a href="http://sw.scu.edu.cn">
+                                <i class="am-icon-angle-right"></i>
+                                <span>软件学院</span>
+                                <i class="am-icon-star tpl-left-nav-content-ico am-fr am-margin-right"></i>
+                            </a>
+                        </li>
                         <li>
                             <a href="http://math.scu.edu.cn">
                                 <i class="am-icon-angle-right"></i>
@@ -181,17 +277,20 @@
                         </li>
                     </ul>
                 </li>
-<!--
-                <li class="tpl-left-nav-item">
-                    <a href="login.html" class="nav-link tpl-left-nav-link-list">
-                        <i class="am-icon-key"></i>
-                        <span>首页</span>
-                    </a>
-                </li>
-                -->
+
+                                //<li class="tpl-left-nav-item">
+                                //    <a href="login.html" class="nav-link tpl-left-nav-link-list">
+                               //         <i class="am-icon-key"></i>
+                                //        <span>首页</span>
+                            //        </a>
+                           //     </li>
+
             </ul>
         </div>
     </div>
+
+-->
+
     <div class="tpl-content-wrapper">
         <div class="tpl-content-page-title">
             新闻分类推荐网站 (四川大学)
@@ -236,19 +335,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="am-u-sm-12 am-u-md-3">
-                        <div class="am-form-group">
-                            <select data-am-selected="{btnSize: 'sm'}">
-                                <option value="option1">所有类别</option>
-                                <option value="option2">IT业界</option>
-                                <option value="option3">数码产品</option>
-                                <option value="option3">笔记本电脑</option>
-                                <option value="option3">平板电脑</option>
-                                <option value="option3">只能手机</option>
-                                <option value="option3">超极本</option>
-                            </select>
-                        </div>
-                    </div>
+
                     <div class="am-u-sm-12 am-u-md-3">
                         <div class="am-input-group am-input-group-sm">
                             <input type="text" class="am-form-field">
@@ -260,163 +347,25 @@
                     </div>
                 </div>
 
-                <ul class="tpl-task-list tpl-task-remind">
-                    <li>
-                        <div class="cosB">
-                            12分钟前
-                        </div>
-                        <div class="cosA">
-                            <span class="cosIco">
-                                <i class="am-icon-bell-o"></i>
-                            </span>
-                            <span id="news_1"> 注意：Chrome 和 Firefox 下， display: inline-block; 或 display: block; 的元素才会应用旋转动画。
-                                <span class="tpl-label-info"> 提取文件
-                                <i class="am-icon-share"></i>
-                                </span>
-                            </span>
-                        </div>
+                <ul class="tpl-task-list tpl-task-remind" id="news_title_list">
 
-                    </li>
-                    <li>
-                        <div class="cosB">
-                            36分钟前
-                        </div>
-                        <div class="cosA">
-                            <span class="cosIco label-danger">
-                                <i class="am-icon-bolt"></i>
-                            </span>
-                            <span id="news_2"> FontAwesome 在绘制图标的时候不同图标宽度有差异， 添加 .am-icon-fw 将图标设置为固定的宽度，解决宽度不一致问题（v2.3 新增）。</span>
-                        </div>
-                    </li>
 
-                    <li>
-                        <div class="cosB">
-                            2小时前
-                        </div>
-                        <div class="cosA">
-                                <span class="cosIco label-info">
-                        <i class="am-icon-bullhorn"></i>
-                      </span>
-
-                            <span id="news_3"> 使用 flexbox 实现，只兼容 IE 10+ 及其他现代浏览器。</span>
-                        </div>
-
-                    </li>
-                    <li>
-                        <div class="cosB">
-                            1天前
-                        </div>
-                        <div class="cosA">
-                                <span class="cosIco label-warning">
-                        <i class="am-icon-plus"></i>
-                      </span>
-
-                            <span id="news_4"> 部分用户反应在过长的 Tabs 中滚动页面时会意外触发 Tab 切换事件，用户可以选择禁用触控操作。</span>
-                        </div>
-
-                    </li>
-                    <li>
-                        <div class="cosB">
-                            12分钟前
-                        </div>
-                        <div class="cosA">
-                                <span class="cosIco">
-                        <i class="am-icon-bell-o"></i>
-                      </span>
-                            <span id="news_5"> 注意：Chrome 和 Firefox 下， display: inline-block; 或 display: block; 的元素才会应用旋转动画。<span
-                                    class="tpl-label-info"> 提取文件
-                                                            <i class="am-icon-share"></i>
-                                                        </span></span>
-                        </div>
-
-                    </li>
-                    <li>
-                        <div class="cosB">
-                            36分钟前
-                        </div>
-                        <div class="cosA">
-                                <span class="cosIco label-danger">
-                        <i class="am-icon-bolt"></i>
-                      </span>
-
-                            <span id="news_6"> FontAwesome 在绘制图标的时候不同图标宽度有差异， 添加 .am-icon-fw 将图标设置为固定的宽度，解决宽度不一致问题（v2.3 新增）。</span>
-                        </div>
-
-                    </li>
-
-                    <li>
-                        <div class="cosB">
-                            2小时前
-                        </div>
-                        <div class="cosA">
-                                <span class="cosIco label-info">
-                        <i class="am-icon-bullhorn"></i>
-                      </span>
-
-                            <span id="news_7"> 使用 flexbox 实现，只兼容 IE 10+ 及其他现代浏览器。</span>
-                        </div>
-
-                    </li>
-                    <li>
-                        <div class="cosB">
-                            2小时前
-                        </div>
-                        <div class="cosA">
-                                <span class="cosIco label-info">
-                        <i class="am-icon-bullhorn"></i>
-                      </span>
-
-                            <span id="news_8"> 使用 flexbox 实现，只兼容 IE 10+ 及其他现代浏览器。</span>
-                        </div>
-
-                    </li>
-                    <li>
-                        <div class="cosB">
-                            2小时前
-                        </div>
-                        <div class="cosA">
-                                <span class="cosIco label-info">
-                        <i class="am-icon-bullhorn"></i>
-                      </span>
-
-                            <span id="news_9"> 使用 flexbox 实现，只兼容 IE 10+ 及其他现代浏览器。</span>
-                        </div>
-
-                    </li>
-                    <li>
-                        <div class="cosB">
-                            2小时前
-                        </div>
-                        <div class="cosA">
-                                <span class="cosIco label-info">
-                        <i class="am-icon-bullhorn"></i>
-                      </span>
-
-                            <span id="news_10"> 使用 flexbox 实现，只兼容 IE 10+ 及其他现代浏览器。</span>
-                        </div>
-
-                    </li>
+                    <!-- 新闻显示 -->
                 </ul>
             </div>
 
         </div>
-
     </div>
-
 </div>
-<script src="../js/temp.js?ver=1"></script>
-<%-- Bootstrap --%>
-<script src="../js/jquery-3.3.1.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
-<script src="../js/jquery.min.js"></script>
-<script src="../js/amazeui.min.js"></script>
-<script src="../js/app.js"></script>
+
 </body>
-<script src="../js/userAjax.js?ver=1"></script>
-<%-- Bootstrap --%>
-<script src="../js/jquery-3.3.1.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
+
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/js/amazeui.min.js"></script>
+<script src="../assets/js/app.js"></script>
+<script src="../js/newsAjax.js?"></script>
 <script>
+
     $(document).ready(function () {
         $.ajax({
             url: '../../news/get_title_list.do',//URL是巨坑！！！
@@ -424,15 +373,32 @@
             dataType: 'json',
             data: {},
             async: false,//是否异步请求
-            success: function (data) {   //如果请求成功，返回数据。
+            success: function (data) {
+                //如果请求成功，返回数据。
                 if (data.status == 1) {
                     alert("请登录后再使用!");
                 } else if (data.status == 0) {
                     //var json= JSON.stringify(data);
                     //alert(json);
-                    for (var i = 0; i < data.data.pageSize; i++) {
-                        var newsID = "news_" + (i+1).toString();
-                        document.getElementById(newsID).innerHTML = data.data.list[i].newstitle;
+                    var html ="";
+                    for (var i = 0; i < data.data.pageSize; i++)
+                    {
+                        html="                    <li>\n" +
+                            "                        <div class=\"cosB\">\n" +
+                            "                            1天前\n" +
+                            "                        </div>\n" +
+                            "                        <div class=\"cosA\">\n" +
+                            "                                <span class=\"cosIco label-warning\">\n" +
+                            "                        <i class=\"am-icon-plus\"></i>\n" +
+                            "                      </span>\n" +
+                            "\n" +
+                            "                            <span onclick=\"viewDetail(this)\" id="+data.data.list[i].newsid+"> "+
+                            data.data.list[i].newstitle+"</span>\n" +
+                            "                        </div>\n" +
+                            "\n" +
+                            "                    </li>";
+                        alert(html);
+                        $("#news_title_list").append(html);
                     }
                 }
             },
@@ -442,56 +408,8 @@
                 alert(textStatus);
             }
         })
-    })
+    });
+
 </script>
-</html>
 
-
-<!--
-
-<html>
-<head>
-<title>Title</title>
-<%-- Bootstrap --%>
-<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-<%-- Custom styles for this template --%>
-<link href="css/navbar-fixed-top.css" rel="stylesheet">
-</head>
-<body>
-<h2>Hello World!</h2>
-<div class="inner cover">
-<div class="form-signin">
-<h2 class="form-signin-heading">请填写信息</h2>
-<input type="text" id="user" class="form-control" placeholder="用户名" required autofocus>
-<input type="password" id="password" class="form-control" placeholder="密码" required autofocus>
-<div class="span12"><br></div>
-<button class="btn btn-lg btn-primary btn-block" onclick="check()">登陆</button>
-<button class="btn btn-lg btn-warning btn-block">注册</button>
-</div>
-</div>
-</body>
-<script src="views/js/userAjax.js?ver=1"></script>
-<%-- Bootstrap --%>
-<script src="views/js/jquery-3.3.1.min.js"></script>
-<script src="views/js/bootstrap.min.js"></script>
-<script>
-function check() {
-var userName = $('#user')[0].value;
-console.log(userName);
-var passWord = $('#password')[0].value;
-console.log(passWord);
-$.ajax({
-type: 'POST',
-url: 'user/login.do',
-data: 'username=' + userName + '&password=' + passWord,
-success: function (data) {
-if (data.status == 0) {
-window.location.href = "views/jsp/signin.jsp";
-} else {
-window.location.href = "views/jsp/signin_no.jsp";
-}
-}
-});
-}
-</script>
 </html>
