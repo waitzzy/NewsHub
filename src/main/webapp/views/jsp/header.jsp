@@ -103,6 +103,7 @@
                     </li>
                 </ul>
             </li>
+            <!--
             <li class="am-dropdown" data-am-dropdown data-am-dropdown-toggle>
                 <a class="am-dropdown-toggle tpl-header-list-link" href="javascript:;">
                     <span class="am-icon-calendar"></span> 按照来源分类 </span>
@@ -154,6 +155,7 @@
                     </li>
                 </ul>
             </li>
+            -->
             <li class="am-hide-sm-only">
                 <a href="javascript:;" id="admin-fullscreen" class="tpl-header-list-link">
                     <span class="am-icon-arrows-alt"></span>
@@ -168,10 +170,10 @@
                 <ul class="am-dropdown-content">
                     <li><a href="personal.jsp"><span class="am-icon-bell-o"></span> 个人信息</a></li>
                     <li><a href="changeInfo.jsp"><span class="am-icon-cog"></span> 修改密码</a></li>
-                    <li><a href="../../index.jsp"><span class="am-icon-power-off"></span> 退出账户</a></li>
+                    <li><a href="signin.jsp"><span class="am-icon-power-off"></span> 退出账户</a></li>
                 </ul>
             </li>
-            <li><a href="../../index.jsp" class="tpl-header-list-link"><span class="am-icon-sign-out tpl-header-list-ico-out-size"></span></a></li>
+            <li><a href="signin.jsp" class="tpl-header-list-link"><span class="am-icon-sign-out tpl-header-list-ico-out-size"></span></a></li>
         </ul>
     </div>
 </header>

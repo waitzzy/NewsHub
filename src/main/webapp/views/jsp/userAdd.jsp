@@ -22,17 +22,17 @@
 
     <div class="tpl-content-wrapper">
         <div class="tpl-content-page-title">
-            Amaze UI 表单
+            新闻分类推荐网站(四川大学) 管理员
         </div>
         <ol class="am-breadcrumb">
-            <li><a href="#" class="am-icon-home">首页</a></li>
-            <li><a href="#">表单</a></li>
-            <li class="am-active">Amaze UI 表单</li>
+            <li><a href="manageHome.jsp" class="am-icon-home">首页</a></li>
+
+            <li class="am-active">用户管理</li>
         </ol>
         <div class="tpl-portlet-components">
             <div class="portlet-title">
                 <div class="caption font-green bold">
-                    <span class="am-icon-code"></span> 表单
+                    <span class="am-icon-code"></span> 添加用户
                 </div>
                 <div class="tpl-portlet-input tpl-fz-ml">
                     <div class="portlet-input input-small input-inline">
@@ -55,7 +55,7 @@
 
                             <div class="am-form-group">
                                 <label  class="am-u-sm-3 am-form-label">用户类型<span
-                                        class="tpl-form-line-small-title"></span></label>
+                                        class="tpl-form-line-small-title">/User Type</span></label>
                                 <div class="am-u-sm-9">
                                     <input type="text" class="tpl-form-input" id="usertype">
                                 </div>
@@ -63,7 +63,7 @@
 
                             <div class="am-form-group">
                                 <label  class="am-u-sm-3 am-form-label">用户名<span
-                                        class="tpl-form-line-small-title"></span></label>
+                                        class="tpl-form-line-small-title">/User Name</span></label>
                                 <div class="am-u-sm-9">
                                     <input type="text" class="tpl-form-input" id="username">
                                 </div>
@@ -72,7 +72,7 @@
 
                             <div class="am-form-group">
                                 <label  class="am-u-sm-3 am-form-label">密码<span
-                                        class="tpl-form-line-small-title">Password</span></label>
+                                        class="tpl-form-line-small-title">/Password</span></label>
                                 <div class="am-u-sm-9">
                                     <input type="text" class="tpl-form-input" id="password">
                                 </div>
@@ -109,7 +109,7 @@
 
 <script>
     var loc = location.href;
-    alert(loc);
+    //alert(loc);
     /*
     var n1 = loc.length;//地址的总长度
     var n2 = loc.indexOf("=");//取得=号的位置
@@ -140,11 +140,11 @@
                 async: false,
                 success:function (data) {
                     if(data.status == 0 ){
-                        alert("更新成功!");
+                        alert("添加成功!");
                         window.location.href="userManage.jsp";
                     }else if (data.status == 1)
                     {
-                        alert(data.toString()) ;
+                        alert(data.msg) ;
                     }
                 },
                 error:function (XMLHttpRequest, textStatus, errorThrown) {

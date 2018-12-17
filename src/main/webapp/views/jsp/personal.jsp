@@ -22,17 +22,16 @@
 
     <div class="tpl-content-wrapper">
         <div class="tpl-content-page-title">
-            Amaze UI 表单
+            新闻分类推荐网站(四川大学)
         </div>
         <ol class="am-breadcrumb">
-            <li><a href="#" class="am-icon-home">首页</a></li>
-            <li><a href="#">表单</a></li>
-            <li class="am-active">Amaze UI 表单</li>
+            <li><a href="home.jsp" class="am-icon-home">首页</a></li>
+            <li class="am-active">个人信息</li>
         </ol>
         <div class="tpl-portlet-components">
             <div class="portlet-title">
                 <div class="caption font-green bold">
-                    <span class="am-icon-code"></span> 表单
+                    <span class="am-icon-code"></span> 个人信息
                 </div>
                 <div class="tpl-portlet-input tpl-fz-ml">
                     <div class="portlet-input input-small input-inline">
@@ -52,39 +51,38 @@
                     <div class="tpl-form-body tpl-form-line">
                         <form class="am-form tpl-form-line-form">
                             <div class="am-form-group">
-                                <label class="am-u-sm-3 am-form-label">用户ID<span class="tpl-form-line-small-title">User ID</span></label>
+                                <label class="am-u-sm-3 am-form-label">用户ID<span class="tpl-form-line-small-title">/User ID</span></label>
                                 <div class="am-u-sm-9">
-                                    <a id="userid"  class="am-u-sm-3 am-form-label"> </a>
+                                    <small id="userid" > </small>
                                 </div>
                             </div>
 
                             <div class="am-form-group">
-                                <label  class="am-u-sm-3 am-form-label">用户名<span class="tpl-form-line-small-title">User Name</span></label>
+                                <label  class="am-u-sm-3 am-form-label">用户名<span class="tpl-form-line-small-title">/User Name</span></label>
                                 <div class="am-u-sm-9">
-                                    <a id="username" class="am-u-sm-3 am-form-label"> </a>
-
+                                    <small id="username"> </small>
                                 </div>
                             </div>
 
                             <div class="am-form-group">
-                                <label  class="am-u-sm-3 am-form-label">登录时间 <span class="tpl-form-line-small-title">Login Time</span></label>
+                                <label  class="am-u-sm-3 am-form-label">登录时间 <span class="tpl-form-line-small-title">/Login Time</span></label>
                                 <div class="am-u-sm-9">
-                                    <a  id="logintime" class="am-u-sm-3 am-form-label"> </a>
+                                    <small  id="logintime" > </small>
                                 </div>
                             </div>
 
 
                             <div class="am-form-group">
-                                <label  class="am-u-sm-3 am-form-label">注册时间 <span class="tpl-form-line-small-title">Register Time</span></label>
+                                <label  class="am-u-sm-3 am-form-label">注册时间 <span class="tpl-form-line-small-title">/Register Time</span></label>
                                 <div class="am-u-sm-9">
-                                    <a id="createtime" class="am-u-sm-3 am-form-label"> </a>
+                                    <small id="createtime" > </small>
                                 </div>
                             </div>
 
                             <div class="am-form-group">
-                                <label  class="am-u-sm-3 am-form-label">更新时间 <span class="tpl-form-line-small-title">Update Time</span></label>
+                                <label  class="am-u-sm-3 am-form-label">更新时间 <span class="tpl-form-line-small-title">/Update Time</span></label>
                                 <div class="am-u-sm-9">
-                                    <a id="updatetime" class="am-u-sm-3 am-form-label"> </a>
+                                    <small id="updatetime" > </small>
                                 </div>
                             </div>
 
@@ -121,7 +119,7 @@
 
     $(document).ready(function () {
         var userInfo = sessionStorage.getItem('userInfo');
-        console.log(userInfo);
+        //console.log(userInfo);
         userinfo = JSON.parse(userInfo);
         //取值时：把获取到的Json字符串转换回对象
         var logintime = userinfo.data.logintime;

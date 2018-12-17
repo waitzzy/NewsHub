@@ -26,12 +26,17 @@
 
     <div class="tpl-content-wrapper">
         <div class="tpl-content-page-title">
-            新闻分类推荐网站 (四川大学) 管理员
+            新闻分类推荐网站(四川大学)管理端
         </div>
+        <ol class="am-breadcrumb">
+            <li><a href="manageHome.jsp" class="am-icon-home">首页</a></li>
+
+            <li class="am-active">注意事项</li>
+        </ol>
         <div class="tpl-portlet-components">
             <div class="portlet-title">
                 <div class="caption font-green bold">
-                    <span class="am-icon-code"></span> 新闻列表
+                    <span class="am-icon-code"></span> 注意事项
                 </div>
                 <div class="tpl-portlet-input tpl-fz-ml">
                     <div class="portlet-input input-small input-inline">
@@ -42,12 +47,17 @@
                 </div>
             </div>
             <div class="tpl-block">
-
-                <ul class="tpl-task-list tpl-task-remind" id="news_title_list">
-
-
-                    <!-- 新闻显示 -->
-                </ul>
+                <div class="tpl-content-scope">
+                    <h2>
+                        <span class="close" data-close="note">管理员注意事项</span>
+                    </h2>
+                    <div class="note note-info">
+                        <h3>1.未经批准，不得随意发布新闻、修改新闻。</h3>
+                        <h3>2.原则上不得修改用户个人信息。</h3>
+                        <h3>3.网站管理员必须保管好自己的账号信息。</h3>
+                        <h3>4.严禁泄露用户个人信息。</h3>
+                    </div>
+                </div>
             </div>
 
         </div>

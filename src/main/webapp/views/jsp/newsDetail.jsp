@@ -28,16 +28,16 @@
 
     <div class="tpl-content-wrapper">
         <div class="tpl-content-page-title">
-            新闻分类推荐网站
+            新闻分类推荐网站(四川大学)
         </div>
         <ol class="am-breadcrumb">
             <li><a href="home.jsp" class="am-icon-home">首页</a></li>
             <li class="am-active">新闻正文</li>
         </ol>
         <div class="tpl-content-scope">
-            <h3 id="newsTitle">
+            <h2 id="newsTitle">
                 <span class="close" data-close="note"></span>
-            </h3>
+            </h2>
             <div class="note note-info">
 
                 <p>
@@ -88,11 +88,11 @@
 <script src="../js/dataTransfer.js" type="text/javascript" language="javascript" charset="utf-8"></script>
 <script >
     var loc = location.href;
-    alert(loc)
+    //alert(loc)
     var n1 = loc.length;//地址的总长度
     var n2 = loc.indexOf("=");//取得=号的位置
     var id = decodeURI(loc.substr(n2+1, n1-n2));//从=号后面的内容
-    alert(id);
+    //alert(id);
 
     var URL ='../../news/get_detail_news.do'+'?'+'newsId='+id;
     $.ajax({
@@ -117,7 +117,7 @@
                 if(updatetime != null){
                     document.getElementById("updateTime").innerHTML= timeFormat(updatetime);}
                 else{
-                    document.getElementById("updateTime").innerHTML= "未更新";
+                    document.getElementById("updateTime").innerHTML= "从未更新";
                 }
                 document.getElementById("newsContent").innerHTML=obj.data.newscontent;
             }else if(obj.status == 1){

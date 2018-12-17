@@ -13,12 +13,12 @@ function displayNews(e){
     else if(id == "学术"){ id =5;}
     else if(id == "国际"){ id =6;}
     else if(id == "就业"){ id =7;}
-    alert(id);
+    //alert(id);
     location.href = "classify.jsp"+"?"+"label="+id;
 }
 
 function viewDetail(obj){
-    alert(obj.id);
+    //alert(obj.id);
     var id = obj.id;
     //var s = document.getElementById("news");
     location.href="newsDetail.jsp"+"?"+"newsId="+id;
