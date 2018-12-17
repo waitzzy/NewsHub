@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!doctype html>
 <html>
 <head>
     <title>Title</title>
@@ -41,7 +42,7 @@
                 </a>
                 <ul class="am-dropdown-content tpl-dropdown-content">
                     <li class="tpl-dropdown-content-external">
-                        <h3>共计 <span class="tpl-color-danger">7</span> 个分类</h3></li>
+                        <h3>共计 <span class="tpl-color-danger">7</span>个分类</h3></li>
                     <li>
                         <a  class="tpl-dropdown-content-message">
                                 <span class="tpl-dropdown-content-photo">

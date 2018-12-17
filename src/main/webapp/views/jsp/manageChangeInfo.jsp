@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@page pageEncoding="UTF-8" %>
+<!doctype html>
 <html>
 <head>
     <title>Title</title>

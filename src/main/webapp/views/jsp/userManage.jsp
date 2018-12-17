@@ -5,14 +5,9 @@
   Time: 14:24
   To change this template use File | Settings | File Templates.
 --%>
-<%--
-  Created by IntelliJ IDEA.
-  User: wait
-  Date: 2018/12/16
-  Time: 12:24
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@page pageEncoding="UTF-8" %>
+<!doctype html>
 <html>
 <head>
     <title>Title</title>
@@ -39,7 +34,7 @@
         <div class="tpl-portlet-components">
             <div class="portlet-title">
                 <div class="caption font-green bold">
-                    <span class="am-icon-code"></span> 列表
+                    <span class="am-icon-code"></span> 用户列表
                 </div>
                 <div class="tpl-portlet-input tpl-fz-ml">
                     <div class="portlet-input input-small input-inline">
@@ -63,8 +58,9 @@
                                     <th class="table-title">用户名</th>
                                     <th class="table-type">用户类型</th>
                                     <th class="table-id">密码</th>
-                                    <th class="table-author am-hide-sm-only">登录时间</th>
+                                    <th class="table-date am-hide-sm-only">登录时间</th>
                                     <th class="table-date am-hide-sm-only">注册时间</th>
+                                    <th class="table-date am-hide-sm-only">更新时间</th>
                                     <th class="table-set">操作</th>
                                 </tr>
                                 </thead>
@@ -104,6 +100,8 @@
 <script src="../assets/js/jquery.min.js"></script>
 <script src="../assets/js/amazeui.min.js"></script>
 <script src="../assets/js/app.js"></script>
+<script src="../js/dataTransfer.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+
 <script>
 
     $(document).ready(function () {
@@ -129,6 +127,22 @@
                         var password = data.data.list[i].password;
                         var logintime = data.data.list[i].logintime;
                         var createtime = data.data.list[i].createtime;
+                        var updatetime = data.data.list[i].updatetime;
+                        var logintimeHTML = "";
+                        var updatetimeHTML="";
+                        var createtimeHTML = "";
+
+                        if(logintime == null) {
+                            logintimeHTML = "从未登录";}else{
+                            logintimeHTML = timeFormat(logintime);
+                        }
+
+                        createtimeHTML = timeFormat(createtime);
+
+                        if(updatetime == null) {
+                            updatetimeHTML = "从未更新";}else{
+                            updatetimeHTML = timeFormat(updatetime);
+                        }
 
                         html="                                <tr>\n" +
                             "                                    <td><input type=\"checkbox\"></td>\n" +
@@ -136,8 +150,9 @@
                             "                                    <td>"+username+"</td>\n" +
                             "                                    <td>"+usertype+"</td>\n" +
                             "                                    <td>"+password+"</td>\n" +
-                            "                                    <td class=\"am-hide-sm-only\">"+logintime+"</td>\n" +
-                            "                                    <td class=\"am-hide-sm-only\">"+createtime+"</td>\n" +
+                            "                                    <td class=\"am-hide-sm-only\">"+logintimeHTML+"</td>\n" +
+                            "                                    <td class=\"am-hide-sm-only\">"+createtimeHTML+"</td>\n" +
+                            "                                    <td class=\"am-hide-sm-only\">"+updatetimeHTML+"</td>\n" +
                             "                                    <td>\n" +
                             "                                        <div class=\"am-btn-toolbar\">\n" +
                             "                                            <div id =\""+userid+"\" class=\"am-btn-group am-btn-group-xs\">\n" +

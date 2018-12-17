@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@page pageEncoding="UTF-8" %>
+<!doctype html>
 <html>
 <head>
     <title>Title</title>
@@ -70,9 +71,10 @@
                                 <label  class="am-u-sm-3 am-form-label">新闻标题<span
                                         class="tpl-form-line-small-title"></span></label>
                                 <div class="am-u-sm-9">
-                                    <a id="newstitle" class="am-u-sm-3 am-form-label"> type</a>
+                                    <small id="newstitle"> type</small>
                                 </div>
                             </div>
+
 
                             <div class="am-form-group">
                                 <label  class="am-u-sm-3 am-form-label">新闻来源<span
@@ -115,6 +117,13 @@
                                 </div>
                             </div>
 
+                            <div class="am-form-group">
+                                <label  class="am-u-sm-3 am-form-label">新闻内容<span
+                                        class="tpl-form-line-small-title"></span></label>
+                                <div class="am-u-sm-9">
+                                    <small id="newscontent"> type</small>
+                                </div>
+                            </div>
 
                             <div class="am-form-group">
                                 <div class="am-u-sm-9 am-u-sm-push-3">
@@ -123,7 +132,6 @@
                                 </div>
                             </div>
                         </form>
-
                     </div>
                 </div>
             </div>
@@ -156,6 +164,7 @@
     document.getElementById("updatetime").innerHTML=newsinfo.updatetime;
     document.getElementById("newscrawltime").innerHTML=newsinfo.newscrawltime;
     document.getElementById("newslabel").innerHTML=newsinfo.newslabel;
+    document.getElementById("newscontent").innerHTML=newsinfo.newscontent;
 
 
 </script>

@@ -1,4 +1,5 @@
 <%@page pageEncoding="UTF-8" %>
+<!doctype html>
 <html>
 <head>
     <title>Title</title>
@@ -51,39 +52,39 @@
                     <div class="tpl-form-body tpl-form-line">
                         <form class="am-form tpl-form-line-form">
                             <div class="am-form-group">
-                                <label class="am-u-sm-3 am-form-label">用户ID<span class="tpl-form-line-small-title"></span></label>
+                                <label class="am-u-sm-3 am-form-label">用户ID<span class="tpl-form-line-small-title">User ID</span></label>
                                 <div class="am-u-sm-9">
-                                    <a id="userid"  class="am-u-sm-3 am-form-label"> 1daaaffa23</a>
+                                    <a id="userid"  class="am-u-sm-3 am-form-label"> </a>
                                 </div>
                             </div>
 
                             <div class="am-form-group">
-                                <label  class="am-u-sm-3 am-form-label">用户名<span class="tpl-form-line-small-title">Name</span></label>
+                                <label  class="am-u-sm-3 am-form-label">用户名<span class="tpl-form-line-small-title">User Name</span></label>
                                 <div class="am-u-sm-9">
-                                    <a id="username" class="am-u-sm-3 am-form-label"> 1daaaffa23</a>
+                                    <a id="username" class="am-u-sm-3 am-form-label"> </a>
 
                                 </div>
                             </div>
 
                             <div class="am-form-group">
-                                <label  class="am-u-sm-3 am-form-label">登录时间 <span class="tpl-form-line-small-title">LoginTime</span></label>
+                                <label  class="am-u-sm-3 am-form-label">登录时间 <span class="tpl-form-line-small-title">Login Time</span></label>
                                 <div class="am-u-sm-9">
-                                    <a  id="logintime" class="am-u-sm-3 am-form-label"> 1daaaffa23</a>
+                                    <a  id="logintime" class="am-u-sm-3 am-form-label"> </a>
                                 </div>
                             </div>
 
 
                             <div class="am-form-group">
-                                <label  class="am-u-sm-3 am-form-label">注册时间 <span class="tpl-form-line-small-title">RegisterTime</span></label>
+                                <label  class="am-u-sm-3 am-form-label">注册时间 <span class="tpl-form-line-small-title">Register Time</span></label>
                                 <div class="am-u-sm-9">
-                                    <a id="createtime" class="am-u-sm-3 am-form-label"> 1daaaffa23</a>
+                                    <a id="createtime" class="am-u-sm-3 am-form-label"> </a>
                                 </div>
                             </div>
 
                             <div class="am-form-group">
-                                <label  class="am-u-sm-3 am-form-label">更新时间 <span class="tpl-form-line-small-title">UpdateTime</span></label>
+                                <label  class="am-u-sm-3 am-form-label">更新时间 <span class="tpl-form-line-small-title">Update Time</span></label>
                                 <div class="am-u-sm-9">
-                                    <a id="updatetime" class="am-u-sm-3 am-form-label"> 1daaaffa23</a>
+                                    <a id="updatetime" class="am-u-sm-3 am-form-label"> </a>
                                 </div>
                             </div>
 
@@ -91,7 +92,7 @@
 
                             <div class="am-form-group">
                                 <div class="am-u-sm-9 am-u-sm-push-3">
-                                    <button href="home.jsp" type="button" class="am-btn am-btn-primary tpl-btn-bg-color-success ">确认</button>
+                                    <button onclick="window.location.href='home.jsp'" type="button" class="am-btn am-btn-primary tpl-btn-bg-color-success ">确认</button>
                                 </div>
                             </div>
                         </form>
@@ -121,7 +122,6 @@
     $(document).ready(function () {
         var userInfo = sessionStorage.getItem('userInfo');
         console.log(userInfo);
-        alert("damn");
         userinfo = JSON.parse(userInfo);
         //取值时：把获取到的Json字符串转换回对象
         var logintime = userinfo.data.logintime;
@@ -131,7 +131,10 @@
         document.getElementById("username").innerText=userinfo.data.username;
         document.getElementById("logintime").innerText=timeFormat(logintime);
         document.getElementById("createtime").innerText=timeFormat(createtime);
-        document.getElementById("updatetime").innerText=timeFormat(updatetime);
+        if(updatetime == null){
+            document.getElementById("updatetime").innerText="从未更新";
+        }else{
+        document.getElementById("updatetime").innerText=timeFormat(updatetime);}
     });
 </script>
 <script>

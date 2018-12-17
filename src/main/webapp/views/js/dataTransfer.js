@@ -27,13 +27,21 @@ function labelToNum(label){
 }
 
 function numToLabel(num) {
-    if(num == 1 ){label = "教学";}
-    else if(num == 2 ){label = "活动";}
-    else if(num == 3 ){label = "竞赛";}
-    else if(num == 4 ){label = "科研";}
-    else if(num == 5 ){label = "学术";}
-    else if(num == 6 ){label = "国际";}
-    else if(num == 7 ){label = "就业";}
-    else {console.log("标签转换发生错误!");}
+
+    var label = "";
+    var len =arguments.length;
+    alert(len);
+    if(len == 0){
+        label = "未分类"}else{
+    if(num == 1 ||num == "1"){label = "教学";}
+    else if(num == 2 ||num == "2"){label = "活动";}
+    else if(num == 3 ||num == "3"){label = "竞赛";}
+    else if(num == 4 ||num == "4"){label = "科研";}
+    else if(num == 5 ||num == "5"){label = "学术";}
+    else if(num == 6 ||num == "6"){label = "国际";}
+    else if(num == 7 ||num == "7"){label = "就业";}
+    else {
+        console.log("标签转换发生错误!");
+        label = "未分类";}}
     return label;
 }

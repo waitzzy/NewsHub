@@ -5,21 +5,8 @@
   Time: 14:24
   To change this template use File | Settings | File Templates.
 --%>
-<%--
-  Created by IntelliJ IDEA.
-  User: wait
-  Date: 2018/12/16
-  Time: 14:24
-  To change this template use File | Settings | File Templates.
---%>
-<%--
-  Created by IntelliJ IDEA.
-  User: wait
-  Date: 2018/12/16
-  Time: 12:24
-  To change this template use File | Settings | File Templates.
---%>
 <%@page pageEncoding="UTF-8" %>
+<!doctype html>
 <html>
 <head>
     <title>Title</title>
@@ -39,14 +26,14 @@
 
     <div class="tpl-content-wrapper">
         <div class="tpl-content-page-title">
-            新闻分类推荐网站 (四川大学) 管理员
+            新闻分类推荐网站 (四川大学) 管理员端
         </div>
 
 
         <div class="tpl-portlet-components">
             <div class="portlet-title">
                 <div class="caption font-green bold">
-                    <span class="am-icon-code"></span> 列表
+                    <span class="am-icon-code"></span> 新闻管理列表
                 </div>
                 <div class="tpl-portlet-input tpl-fz-ml">
                     <div class="portlet-input input-small input-inline">
@@ -112,6 +99,8 @@
 <script src="../assets/js/jquery.min.js"></script>
 <script src="../assets/js/amazeui.min.js"></script>
 <script src="../assets/js/app.js"></script>
+<script src="../js/dataTransfer.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+
 <script>
 
     $(document).ready(function () {
@@ -137,16 +126,47 @@
                         var newslabel = data.data.list[i].password;
                         var newstime = data.data.list[i].newstime;
                         var newscrawltime = data.data.list[i].newscrawltime;
-                        var updatetime = data.data.list[i].updatetime;
+                        var updatetime = data.data.list[i].updateTime;
+                        var newscontent = data.data.list[i].newscontent;
+
+                        var newstimeHTML = "";
+                        if(newstime == null ){
+                            newstimeHTML = "未获取";}
+                        else{
+                            newstimeHTML = newstime;}
+
+                        var updatetimeHTML = "";
+                        if(updatetime == null ){
+                            updatetimeHTML = "从未更新";}
+                        else{
+                            updatetimeHTML = timeFormat(updatetime);}
+
+                        var newscrawltimeHTML = "";
+                        if(newscrawltime == null ){
+                            newscrawltimeHTML = "未获取";}
+                        else{
+                            newscrawltimeHTML = newscrawltime;}
+
+                        var newssourceHTML = "";
+                        if(newssource == null){
+                            newssourceHTML = "未获取";
+                        }else{
+                            newssourceHTML = newssource;
+                        }
+
+                        var newslabelHTML = numToLabel(newslabel);
+
+
+
                         html="                                <tr>\n" +
                             "                                    <td><input type=\"checkbox\"></td>\n" +
-                            "                                    <td>"+data.data.list[i].newsid+"</td>\n" +
-                            "                                    <td>"+data.data.list[i].newstitle+"</td>\n" +
-                            "                                    <td>"+data.data.list[i].newssource+"</td>\n" +
-                            "                                    <td>"+data.data.list[i].newslabel+"</td>\n" +
-                            "                                    <td class=\"am-hide-sm-only\">"+data.data.list[i].newstime+"</td>\n" +
-                            "                                    <td class=\"am-hide-sm-only\">"+data.data.list[i].newscrawltime+"</td>\n" +
-                            "                                    <td class=\"am-hide-sm-only\">"+data.data.list[i].updatetime+"</td>\n" +
+                            "                                    <td>"+newsid+"</td>\n" +
+                            "                                    <td>"+newstitle+"</td>\n" +
+                            "                                    <td>"+newssourceHTML+"</td>\n" +
+                            "                                    <td>"+newslabelHTML+"</td>\n" +
+                            "                                    <td class=\"am-hide-sm-only\">"+newstimeHTML+"</td>\n" +
+                            "                                    <td class=\"am-hide-sm-only\">"+newscrawltimeHTML+"</td>\n" +
+                            "                                    <td class=\"am-hide-sm-only\">"+updatetimeHTML+"</td>\n" +
                             "                                    <td>\n" +
                             "                                        <div class=\"am-btn-toolbar\">\n" +
                             "                                            <div id =\""+newsid+"\" class=\"am-btn-group am-btn-group-xs\">\n" +
@@ -160,11 +180,12 @@
                         alert(html);
                         var jsondata1 = {"newsid":newsid,
                             "newstitle":newstitle,
-                            "newslabel":newslabel,
-                            "newssource":newssource,
-                            "newstime":newstime,
-                            "newscrawltime":newscrawltime,
-                            "updatetime":updatetime
+                            "newslabel":newslabelHTML,
+                            "newssource":newssourceHTML,
+                            "newstime":newstimeHTML,
+                            "newscrawltime":newscrawltimeHTML,
+                            "updatetime":updatetimeHTML,
+                            "newscontent":newscontent
                         };//构造json给session
                         sessionStorage.setItem(newsid, JSON.stringify(jsondata1));
                         $("#news_list").append(html);

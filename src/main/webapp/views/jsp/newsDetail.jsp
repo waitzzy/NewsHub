@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@page pageEncoding="UTF-8" %>
+<!doctype html>
 <html>
 <head>
     <title>Title</title>
@@ -34,10 +35,10 @@
             <li class="am-active">新闻正文</li>
         </ol>
         <div class="tpl-content-scope">
+            <h3 id="newsTitle">
+                <span class="close" data-close="note"></span>
+            </h3>
             <div class="note note-info">
-                <h3 id="newsTitle">
-                    <span class="close" data-close="note"></span>
-                </h3>
 
                 <p>
                     <span class="label label-danger" >新闻ID</span>
@@ -45,7 +46,7 @@
                 </p>
 
                 <p>
-                    <span class="label label-success" >原文URL</span>
+                    <span class="label label-success" >新闻来源</span>
                     <span id="newsSource"></span>
                 </p>
 
@@ -106,14 +107,18 @@
                 var label = obj.data.newslabel;
                 var newscrawltime = obj.data.newscrawltime;
                 var updatetime = obj.data.updatetime;
-                alert(label + numToLabel(label));
+                //alert(label + numToLabel(label));
                 document.getElementById("newsTitle").innerHTML=obj.data.newstitle;
                 document.getElementById("newsID").innerHTML=obj.data.newsid;
                 document.getElementById("newsSource").innerHTML=obj.data.newssource;
                 document.getElementById("newsLabel").innerHTML=numToLabel(label);
                 document.getElementById("newsTime").innerHTML= obj.data.newstime;
                 document.getElementById("newsCrawlTime").innerHTML= timeFormat(newscrawltime);
-                document.getElementById("updateTime").innerHTML= timeFormat(updatetime);
+                if(updatetime != null){
+                    document.getElementById("updateTime").innerHTML= timeFormat(updatetime);}
+                else{
+                    document.getElementById("updateTime").innerHTML= "未更新";
+                }
                 document.getElementById("newsContent").innerHTML=obj.data.newscontent;
             }else if(obj.status == 1){
                 alert(obj.msg);
