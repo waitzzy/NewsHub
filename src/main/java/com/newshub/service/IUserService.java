@@ -18,4 +18,6 @@ public interface IUserService {
     ServerResponse changeUser(Integer id, User user);
 
     ServerResponse getUserList(int pageNum, int pageSize);
+
+    ServerResponse changeInfor(Integer id, String userName, String passWord);
 }

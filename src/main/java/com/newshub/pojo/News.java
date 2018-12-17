@@ -7,7 +7,7 @@ public class News {
 
     private String newstitle;
 
-    private Date newscrawltime;
+    private String newscrawltime;
 
     private String newssource;
 
@@ -19,7 +19,7 @@ public class News {
 
     private String newscontent;
 
-    public News(Integer newsid, String newstitle, Date newscrawltime, String newssource, String newslabel, String newstime, Date updateTime, String newscontent) {
+    public News(Integer newsid, String newstitle, String newscrawltime, String newssource, String newslabel, String newstime, Date updateTime, String newscontent) {
         this.newsid = newsid;
         this.newstitle = newstitle;
         this.newscrawltime = newscrawltime;
@@ -50,11 +50,11 @@ public class News {
         this.newstitle = newstitle == null ? null : newstitle.trim();
     }
 
-    public Date getNewscrawltime() {
+    public String getNewscrawltime() {
         return newscrawltime;
     }
 
-    public void setNewscrawltime(Date newscrawltime) {
+    public void setNewscrawltime(String newscrawltime) {
         this.newscrawltime = newscrawltime;
     }
 

@@ -35,4 +35,14 @@ public class UserController {
     public ServerResponse<String> register(User user){
         return iUserService.register(user);
     }
+
+    @RequestMapping("change_password.do")
+    @ResponseBody
+    public ServerResponse changePassword(HttpSession session, @RequestParam(value = "id") Integer id, @RequestParam(value = "username") String username, @RequestParam(value = "password") String password){
+        User currentUser = (User) session.getAttribute(Const.CURRENT_USER);
+        if(currentUser == null){
+            return ServerResponse.createByErrorMessage("用户未登陆，请登录");
+        }
+        return iUserService.changeInfor(id, username, password);
+    }
 }

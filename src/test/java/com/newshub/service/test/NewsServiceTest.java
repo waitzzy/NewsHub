@@ -1,10 +1,8 @@
 package com.newshub.service.test;
 
-import com.google.common.collect.Lists;
 import com.newshub.dao.NewsMapper;
 import com.newshub.pojo.News;
 import com.newshub.test.TestBase;
-import com.newshub.vo.NewsTitleVo;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
