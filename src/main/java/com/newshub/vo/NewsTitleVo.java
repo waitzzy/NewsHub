@@ -6,6 +6,8 @@ public class NewsTitleVo {
 
     private String newstitle;
 
+    private String newslabel;
+
     public Integer getNewsid() {
         return newsid;
     }
@@ -20,5 +22,13 @@ public class NewsTitleVo {
 
     public void setNewstitle(String newstitle) {
         this.newstitle = newstitle;
+    }
+
+    public String getNewslabel() {
+        return newslabel;
+    }
+
+    public void setNewslabel(String newslabel) {
+        this.newslabel = newslabel;
     }
 }

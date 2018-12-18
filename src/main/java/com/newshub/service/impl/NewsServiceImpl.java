@@ -34,6 +34,7 @@ public class NewsServiceImpl implements INewsService {
         NewsTitleVo newsTitleVo = new NewsTitleVo();
         newsTitleVo.setNewsid(news.getNewsid());
         newsTitleVo.setNewstitle(news.getNewstitle());
+        newsTitleVo.setNewslabel(news.getNewslabel());
         return newsTitleVo;
     }
 
