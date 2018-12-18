@@ -67,6 +67,8 @@
 <script src="../assets/js/amazeui.min.js"></script>
 <script src="../assets/js/app.js"></script>
 <script src="../js/newsAjax.js?"></script>
+<script src="../js/dataTransfer.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+
 <script>
     var URL = '../../news/get_recommend_title.do';
     //alert(URL);
@@ -80,15 +82,18 @@
                 if(data.status == 0 ){
                     document.getElementById("news_title_list").innerHTML='';
                     var html ="";
+
                     for (var i = 0; i < data.data.pageSize; i++)
                     {
+                        var label = data.data.list[i].newslabel;
+                        var labelHTML = numToLabel(label);
                         html="                    <li>\n" +
                             "                        <div class=\"cosB\">\n" +
-                            "                            点击查看\n" +
+                            "                            "+labelHTML+"\n" +
                             "                        </div>\n" +
                             "                        <div class=\"cosA\">\n" +
-                            "                                <span class=\"cosIco label-warning\">\n" +
-                            "                        <i class=\"am-icon-plus\"></i>\n" +
+                            "                                <span class=\"tpl-label-info\">\n" +labelHTML+
+
                             "                      </span>\n" +
                             "\n" +
                             "                            <span onclick=\"viewDetail(this)\" id="+data.data.list[i].newsid+"> "+
