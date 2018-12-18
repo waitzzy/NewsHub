@@ -29,14 +29,14 @@
             新闻分类推荐网站 (四川大学)
         </div>
         <ol class="am-breadcrumb">
-            <li><a href="#" class="am-icon-home"></a></li>
-            <li><a href="#">表单</a></li>
-            <li class="am-active">Amaze UI 表单</li>
+            <li><a href="home.jsp" class="am-icon-home"></a></li>
+            <li><a href="home.jsp">首页</a></li>
+            <li class="am-active">推荐新闻</li>
         </ol>
         <div class="tpl-portlet-components">
             <div class="portlet-title">
                 <div class="caption font-green bold">
-                    <span class="am-icon-code"></span> 新闻列表
+                    <span class="am-icon-code"></span> 推荐新闻列表
                 </div>
                 <div class="tpl-portlet-input tpl-fz-ml">
                     <div class="portlet-input input-small input-inline">
@@ -49,36 +49,6 @@
 
             </div>
             <div class="tpl-block">
-                <div class="am-g">
-                    <div class="am-u-sm-12 am-u-md-6">
-                        <div class="am-btn-toolbar">
-                            <div class="am-btn-group am-btn-group-xs">
-                                <button type="button" class="am-btn am-btn-default am-btn-success"><span
-                                        class="am-icon-plus"></span> 新增
-                                </button>
-                                <button type="button" class="am-btn am-btn-default am-btn-secondary"><span
-                                        class="am-icon-save"></span> 保存
-                                </button>
-                                <button type="button" class="am-btn am-btn-default am-btn-warning"><span
-                                        class="am-icon-archive"></span> 审核
-                                </button>
-                                <button type="button" class="am-btn am-btn-default am-btn-danger"><span
-                                        class="am-icon-trash-o"></span> 删除
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="am-u-sm-12 am-u-md-3">
-                        <div class="am-input-group am-input-group-sm">
-                            <input type="text" class="am-form-field">
-                            <span class="am-input-group-btn">
-            <button class="am-btn  am-btn-default am-btn-success tpl-am-btn-success am-icon-search"
-                    type="button"></button>
-          </span>
-                        </div>
-                    </div>
-                </div>
 
                 <ul class="tpl-task-list tpl-task-remind" id="news_title_list">
 
@@ -114,7 +84,7 @@
                     {
                         html="                    <li>\n" +
                             "                        <div class=\"cosB\">\n" +
-                            "                            1天前\n" +
+                            "                            点击查看\n" +
                             "                        </div>\n" +
                             "                        <div class=\"cosA\">\n" +
                             "                                <span class=\"cosIco label-warning\">\n" +
@@ -126,13 +96,13 @@
                             "                        </div>\n" +
                             "\n" +
                             "                    </li>";
-                        alert(html);
+                        //alert(html);
                         $("#news_title_list").append(html);
                     }
 
                 }else if (data.status == 1)
                 {
-                    alert(data.toString()) ;
+                    alert(data.msg) ;
                 }
             },
             error:function (XMLHttpRequest, textStatus, errorThrown) {

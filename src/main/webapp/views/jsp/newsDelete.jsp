@@ -29,17 +29,17 @@
 
     <div class="tpl-content-wrapper">
         <div class="tpl-content-page-title">
-            Amaze UI 表单
+            新闻分类推荐网站(四川大学) 管理员
         </div>
         <ol class="am-breadcrumb">
-            <li><a href="#" class="am-icon-home">首页</a></li>
-            <li><a href="#">表单</a></li>
-            <li class="am-active">Amaze UI 表单</li>
+            <li><a href="manageHome.jsp" class="am-icon-home">首页</a></li>
+
+            <li class="am-active">新闻管理</li>
         </ol>
         <div class="tpl-portlet-components">
             <div class="portlet-title">
                 <div class="caption font-green bold">
-                    <span class="am-icon-code"></span> 表单
+                    <span class="am-icon-code"></span> 删除新闻
                 </div>
                 <div class="tpl-portlet-input tpl-fz-ml">
                     <div class="portlet-input input-small input-inline">
@@ -61,67 +61,67 @@
 
                             <div class="am-form-group">
                                 <label  class="am-u-sm-3 am-form-label">新闻ID<span
-                                        class="tpl-form-line-small-title"></span></label>
+                                        class="tpl-form-line-small-title">/News ID</span></label>
                                 <div class="am-u-sm-9">
-                                    <a id="newsid" class="am-u-sm-3 am-form-label"> </a>
+                                    <small id="newsid"> </small>
                                 </div>
                             </div>
 
                             <div class="am-form-group">
                                 <label  class="am-u-sm-3 am-form-label">新闻标题<span
-                                        class="tpl-form-line-small-title"></span></label>
+                                        class="tpl-form-line-small-title">/News Title</span></label>
                                 <div class="am-u-sm-9">
-                                    <small id="newstitle"> type</small>
+                                    <small id="newstitle"> </small>
                                 </div>
                             </div>
 
 
                             <div class="am-form-group">
                                 <label  class="am-u-sm-3 am-form-label">新闻来源<span
-                                        class="tpl-form-line-small-title"></span></label>
+                                        class="tpl-form-line-small-title">/News Source</span></label>
                                 <div class="am-u-sm-9">
-                                    <a id="newssource" class="am-u-sm-3 am-form-label"> type</a>
+                                    <small id="newssource"> </small>
                                 </div>
                             </div>
 
 
                             <div class="am-form-group">
                                 <label  class="am-u-sm-3 am-form-label">新闻标签<span
-                                        class="tpl-form-line-small-title">Password</span></label>
+                                        class="tpl-form-line-small-title">/News Label</span></label>
                                 <div class="am-u-sm-9">
-                                    <a id="newslabel" class="am-u-sm-3 am-form-label"> type</a>
+                                    <small id="newslabel"> </small>
                                 </div>
                             </div>
 
                             <div class="am-form-group">
                                 <label  class="am-u-sm-3 am-form-label">新闻时间<span
-                                        class="tpl-form-line-small-title"></span></label>
+                                        class="tpl-form-line-small-title">/News Time</span></label>
                                 <div class="am-u-sm-9">
-                                    <a id="newstime" class="am-u-sm-3 am-form-label"> type</a>
+                                    <small id="newstime"> </small>
                                 </div>
                             </div>
 
                             <div class="am-form-group">
                                 <label  class="am-u-sm-3 am-form-label">爬取时间<span
-                                        class="tpl-form-line-small-title"></span></label>
+                                        class="tpl-form-line-small-title">/Crawl Time</span></label>
                                 <div class="am-u-sm-9">
-                                    <a id="newscrawltime" class="am-u-sm-3 am-form-label"> type</a>
+                                    <small id="newscrawltime"> </small>
                                 </div>
                             </div>
 
                             <div class="am-form-group">
                                 <label  class="am-u-sm-3 am-form-label">更新时间<span
-                                        class="tpl-form-line-small-title"></span></label>
+                                        class="tpl-form-line-small-title">/Update Time</span></label>
                                 <div class="am-u-sm-9">
-                                    <a id="updatetime" class="am-u-sm-3 am-form-label"> type</a>
+                                    <small id="updatetime"> </small>
                                 </div>
                             </div>
 
                             <div class="am-form-group">
                                 <label  class="am-u-sm-3 am-form-label">新闻内容<span
-                                        class="tpl-form-line-small-title"></span></label>
+                                        class="tpl-form-line-small-title">/News Content</span></label>
                                 <div class="am-u-sm-9">
-                                    <small id="newscontent"> type</small>
+                                    <small id="newscontent"> </small>
                                 </div>
                             </div>
 
@@ -149,11 +149,11 @@
 
 <script>
     var loc = location.href;
-    alert(loc)
+    //alert(loc)
     var n1 = loc.length;//地址的总长度
     var n2 = loc.indexOf("=");//取得=号的位置
     var id = decodeURI(loc.substr(n2+1, n1-n2));//从=号后面的内容
-    alert(id);
+    //alert(id);
 
     var newsInfo = sessionStorage.getItem(id);
     newsinfo = JSON.parse(newsInfo);
@@ -184,7 +184,7 @@
                         window.location.href="newsManage.jsp";
                     }else if (data.status == 1)
                     {
-                        alert(data.toString()) ;
+                        alert(data.msg) ;
                     }
                 },
                 error:function (XMLHttpRequest, textStatus, errorThrown) {

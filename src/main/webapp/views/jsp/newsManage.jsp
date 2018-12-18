@@ -29,6 +29,11 @@
             新闻分类推荐网站 (四川大学) 管理员端
         </div>
 
+        <ol class="am-breadcrumb">
+            <li><a href="manageHome.jsp" class="am-icon-home">首页</a></li>
+
+            <li class="am-active">新闻管理</li>
+        </ol>
 
         <div class="tpl-portlet-components">
             <div class="portlet-title">
@@ -113,7 +118,7 @@
             success: function (data) {
                 //如果请求成功，返回数据。
                 if (data.status == 1) {
-                    alert("请登录后再使用!");
+                    alert(data.msg);
                 } else if (data.status == 0) {
                     //var json= JSON.stringify(data);
                     //alert(json);
@@ -123,7 +128,7 @@
                         var newsid = data.data.list[i].newsid;
                         var newstitle = data.data.list[i].newstitle;
                         var newssource =data.data.list[i].newssource;
-                        var newslabel = data.data.list[i].password;
+                        var newslabel = data.data.list[i].newslabel;
                         var newstime = data.data.list[i].newstime;
                         var newscrawltime = data.data.list[i].newscrawltime;
                         var updatetime = data.data.list[i].updateTime;
@@ -177,7 +182,7 @@
                             "                                        </div>\n" +
                             "                                    </td>\n" +
                             "                                </tr>"
-                        alert(html);
+                        //alert(html);
                         var jsondata1 = {"newsid":newsid,
                             "newstitle":newstitle,
                             "newslabel":newslabelHTML,
@@ -205,7 +210,7 @@
     function jumpNewsEdit(obj){
         var id=$(obj).parent().attr("id");
         var URL = "newsEdit.jsp"+"?"+"id="+id;
-        alert(URL);
+        //alert(URL);
         window.location.href= URL;
         window.event.returnValue=false;
     }
@@ -214,7 +219,7 @@
     function jumpNewsDelete(obj){
         var id=$(obj).parent().attr('id');
         var URL = "newsDelete.jsp"+"?"+"id="+id;
-        alert(URL);
+        //alert(URL);
         window.location.href= URL;
         window.event.returnValue=false;
     }
@@ -222,7 +227,7 @@
 <script>
     function jumpNewsAdd(obj){
         var URL = "newsAdd.jsp";
-        alert(URL);
+        //alert(URL);
         window.location.href= URL;
         window.event.returnValue=false;
     }

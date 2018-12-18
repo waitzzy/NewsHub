@@ -29,12 +29,16 @@
         <div class="tpl-content-page-title">
             新闻分类推荐网站 (四川大学) 管理员
         </div>
+        <ol class="am-breadcrumb">
+            <li><a href="manageHome.jsp" class="am-icon-home">首页</a></li>
 
+            <li class="am-active">用户管理</li>
+        </ol>
 
         <div class="tpl-portlet-components">
             <div class="portlet-title">
                 <div class="caption font-green bold">
-                    <span class="am-icon-code"></span> 用户列表
+                    <span class="am-icon-code"></span> 用户管理列表
                 </div>
                 <div class="tpl-portlet-input tpl-fz-ml">
                     <div class="portlet-input input-small input-inline">
@@ -113,10 +117,10 @@
             async: false,//是否异步请求
             success: function (data) {
                 if (data.status == 1) {
-                    alert("请登录后再使用!");
+                    alert(data.msg);
                 } else if (data.status == 0) {
-                    var json= JSON.stringify(data);
-                    alert(json);
+                    //var json= JSON.stringify(data);
+                    //alert(json);
                     var html ="";
                     for (var i = 0; i < data.data.pageSize; i++)
                     {
@@ -163,13 +167,14 @@
                             "                                        </div>\n" +
                             "                                    </td>\n" +
                             "                                </tr>"
-                        alert(html);
+                        //alert(html);
                         var jsondata = {"userid":userid,
                             "username":username,
                             "usertype":usertype,
                             "password":password,
-                            "logintime":logintime,
-                            "createtime":createtime
+                            "logintime":logintimeHTML,
+                            "createtime":createtimeHTML,
+                            "updatetime":updatetimeHTML
                         };//构造json给session
                         sessionStorage.setItem(data.data.list[i].userid, JSON.stringify(jsondata));
                         $("#user_list").append(html);
@@ -189,7 +194,7 @@
     function jumpUserEdit(obj){
         var id=$(obj).parent().attr("id");
         var URL = "userEdit.jsp"+"?"+"id="+id;
-        alert(URL);
+        //alert(URL);
         window.location.href= URL;
         window.event.returnValue=false;
     }
@@ -198,7 +203,7 @@
     function jumpUserDelete(obj){
         var id=$(obj).parent().attr('id');
         var URL = "userDelete.jsp"+"?"+"id="+id;
-        alert(URL);
+        //alert(URL);
         window.location.href= URL;
         window.event.returnValue=false;
     }
@@ -206,7 +211,7 @@
 <script>
     function jumpUserAdd(obj){
         var URL = "userAdd.jsp";
-        alert(URL);
+        //alert(URL);
         window.location.href= URL;
         window.event.returnValue=false;
     }

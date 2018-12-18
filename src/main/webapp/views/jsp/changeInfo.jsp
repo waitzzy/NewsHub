@@ -22,17 +22,16 @@
 
         <div class="tpl-content-wrapper">
             <div class="tpl-content-page-title">
-                Amaze UI 表单
+                新闻分类推荐网站(四川大学)
             </div>
             <ol class="am-breadcrumb">
-                <li><a href="#" class="am-icon-home">首页</a></li>
-                <li><a href="#">表单</a></li>
-                <li class="am-active">Amaze UI 表单</li>
+                <li><a href="home.jsp" class="am-icon-home">首页</a></li>
+                <li class="am-active">修改密码</li>
             </ol>
             <div class="tpl-portlet-components">
                 <div class="portlet-title">
                     <div class="caption font-green bold">
-                        <span class="am-icon-code"></span> 表单
+                        <span class="am-icon-code"></span> 修改密码
                     </div>
                     <div class="tpl-portlet-input tpl-fz-ml">
                         <div class="portlet-input input-small input-inline">
@@ -54,24 +53,24 @@
 
                                 <div class="am-form-group">
                                     <label  class="am-u-sm-3 am-form-label">用户ID<span
-                                            class="tpl-form-line-small-title"></span></label>
+                                            class="tpl-form-line-small-title">/User ID</span></label>
                                     <div class="am-u-sm-9">
-                                        <a id="userid" class="am-u-sm-3 am-form-label"> id</a>
+                                        <small id="userid" ></small>
                                     </div>
                                 </div>
 
                                 <div class="am-form-group">
                                     <label  class="am-u-sm-3 am-form-label">用户名<span
-                                            class="tpl-form-line-small-title"></span></label>
+                                            class="tpl-form-line-small-title">/User Name</span></label>
                                     <div class="am-u-sm-9">
-                                        <a id="username" class="am-u-sm-3 am-form-label">username</a>
+                                        <small id="username" ></small>
                                     </div>
                                 </div>
 
 
                                 <div class="am-form-group">
                                     <label  class="am-u-sm-3 am-form-label">请输入新密码<span
-                                            class="tpl-form-line-small-title">Password</span></label>
+                                            class="tpl-form-line-small-title">/Password 1#</span></label>
                                     <div class="am-u-sm-9">
                                         <input type="password" class="tpl-form-input" id="psword1" placeholder="请输入新密码">
                                     </div>
@@ -79,7 +78,7 @@
 
                                 <div class="am-form-group">
                                     <label  class="am-u-sm-3 am-form-label">再次输入新密码 <span
-                                            class="tpl-form-line-small-title">Password</span></label>
+                                            class="tpl-form-line-small-title">/Password 2#</span></label>
                                     <div class="am-u-sm-9">
                                         <input type="password" class="tpl-form-input" id="psword2" placeholder="再次输入新密码">
                                     </div>
@@ -114,8 +113,8 @@
     <script>
         $(document).ready(function () {
             var userInfo = sessionStorage.getItem('userInfo');
-            console.log(userInfo);
-            alert("damn");
+            //console.log(userInfo);
+
             userinfo = JSON.parse(userInfo);//取值时：把获取到的Json字符串转换回对象
             document.getElementById("userid").innerText = userinfo.data.userid;
             document.getElementById("username").innerText = userinfo.data.username;})
@@ -124,19 +123,21 @@
     <script>
         function changePasswd() {
             var password1 = $('#psword1')[0].value;
-            alert(password1);
+            //alert(password1);
             var password2 = $('#psword2')[0].value;
-            alert(password2);
-            if(password1!==password2){alert("两次输入不一致!请重试!");}
+            //alert(password2);
+            if(password1!==password2){
+                alert("两次输入不一致!请重试!");
+            }
             else {
                 var userInfo = sessionStorage.getItem('userInfo');
-                console.log(userInfo);
+                //console.log(userInfo);
                 userinfo = JSON.parse(userInfo);//取值时：把获取到的Json字符串转换回对象
                 var userID = parseInt(userinfo.data.userid);
                 var userName = userinfo.data.username;
 
-                alert(userID+userName+password2);
-                var URL = "../../manage/change_user.do";
+                //alert(userID+userName+password2);
+                var URL = "../../user/change_password.do";
                 $.ajax({
                     type: 'POST',
                     url: URL,
@@ -152,9 +153,8 @@
                         if (data.status != 0) {
                             alert(data.msg);
                         } else {
-                            alert("修改成功，请重新登录!");
-                            alert(data.msg);
-                            window.location.href = "WEB-INF/index.jsp";
+                            alert("修改成功!将跳转到登陆页面!");
+                            window.location.href = "signin.jsp";
                         }
                     },
                     error: function (XMLHttpRequest, textStatus, errorThrown) {

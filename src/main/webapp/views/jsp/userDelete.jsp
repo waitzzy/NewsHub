@@ -22,17 +22,17 @@
 
     <div class="tpl-content-wrapper">
         <div class="tpl-content-page-title">
-            Amaze UI 表单
+            新闻分类推荐网站(四川大学) 管理员
         </div>
         <ol class="am-breadcrumb">
-            <li><a href="#" class="am-icon-home">首页</a></li>
-            <li><a href="#">表单</a></li>
-            <li class="am-active">Amaze UI 表单</li>
+            <li><a href="manageHome.jsp" class="am-icon-home">首页</a></li>
+
+            <li class="am-active">用户管理</li>
         </ol>
         <div class="tpl-portlet-components">
             <div class="portlet-title">
                 <div class="caption font-green bold">
-                    <span class="am-icon-code"></span> 表单
+                    <span class="am-icon-code"></span> 删除用户
                 </div>
                 <div class="tpl-portlet-input tpl-fz-ml">
                     <div class="portlet-input input-small input-inline">
@@ -54,53 +54,60 @@
 
                             <div class="am-form-group">
                                 <label  class="am-u-sm-3 am-form-label">用户ID<span
-                                        class="tpl-form-line-small-title"></span></label>
+                                        class="tpl-form-line-small-title">/User ID</span></label>
                                 <div class="am-u-sm-9">
-                                    <a id="userid" class="am-u-sm-3 am-form-label"> id</a>
+                                    <small id="userid" > </small>
                                 </div>
                             </div>
 
                             <div class="am-form-group">
                                 <label  class="am-u-sm-3 am-form-label">用户类型<span
-                                        class="tpl-form-line-small-title"></span></label>
+                                        class="tpl-form-line-small-title">/User Type</span></label>
                                 <div class="am-u-sm-9">
-                                    <a id="usertype" class="am-u-sm-3 am-form-label"> type</a>
+                                    <small id="usertype" > </small>
                                 </div>
                             </div>
 
                             <div class="am-form-group">
                                 <label  class="am-u-sm-3 am-form-label">用户名<span
-                                        class="tpl-form-line-small-title"></span></label>
+                                        class="tpl-form-line-small-title">/User Name</span></label>
                                 <div class="am-u-sm-9">
-                                    <a id="username" class="am-u-sm-3 am-form-label"> type</a>
+                                    <small id="username"></small>
                                 </div>
                             </div>
 
 
                             <div class="am-form-group">
                                 <label  class="am-u-sm-3 am-form-label">密码<span
-                                        class="tpl-form-line-small-title">Password</span></label>
+                                        class="tpl-form-line-small-title">/Password</span></label>
                                 <div class="am-u-sm-9">
-                                    <a id="password" class="am-u-sm-3 am-form-label"> type</a>
+                                    <small id="password" > </small>
                                 </div>
                             </div>
 
                             <div class="am-form-group">
                                 <label  class="am-u-sm-3 am-form-label">登录时间<span
-                                        class="tpl-form-line-small-title"></span></label>
+                                        class="tpl-form-line-small-title">/Login Time</span></label>
                                 <div class="am-u-sm-9">
-                                    <a id="logintime" class="am-u-sm-3 am-form-label"> type</a>
+                                    <small id="logintime"> </small>
                                 </div>
                             </div>
 
                             <div class="am-form-group">
                                 <label  class="am-u-sm-3 am-form-label">注册时间<span
-                                        class="tpl-form-line-small-title"></span></label>
+                                        class="tpl-form-line-small-title">/Register Time</span></label>
                                 <div class="am-u-sm-9">
-                                    <a id="createtime" class="am-u-sm-3 am-form-label"> type</a>
+                                    <small id="createtime" ></small>
                                 </div>
                             </div>
 
+                            <div class="am-form-group">
+                                <label  class="am-u-sm-3 am-form-label">更新时间<span
+                                        class="tpl-form-line-small-title">/Update Time</span></label>
+                                <div class="am-u-sm-9">
+                                    <small id="updatetime" ></small>
+                                </div>
+                            </div>
 
                             <div class="am-form-group">
                                 <div class="am-u-sm-9 am-u-sm-push-3">
@@ -127,11 +134,11 @@
 
 <script>
     var loc = location.href;
-    alert(loc)
+    //alert(loc)
     var n1 = loc.length;//地址的总长度
     var n2 = loc.indexOf("=");//取得=号的位置
     var id = decodeURI(loc.substr(n2+1, n1-n2));//从=号后面的内容
-    alert(id);
+    //alert(id);
 
     var userInfo = sessionStorage.getItem(id);
     userinfo = JSON.parse(userInfo);
@@ -141,6 +148,7 @@
     document.getElementById("logintime").innerHTML=userinfo.logintime;
     document.getElementById("createtime").innerHTML=userinfo.createtime;
     document.getElementById("usertype").innerHTML=userinfo.usertype;
+    document.getElementById("updatetime").innerHTML=userinfo.updatetime;
 
 
 </script>
@@ -160,7 +168,7 @@
                         window.location.href="userManage.jsp";
                     }else if (data.status == 1)
                     {
-                        alert(data.toString()) ;
+                        alert(data.msg) ;
                     }
                 },
                 error:function (XMLHttpRequest, textStatus, errorThrown) {

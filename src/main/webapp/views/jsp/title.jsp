@@ -21,7 +21,7 @@
 
             <div class="masthead clearfix">
                 <div class="inner">
-                    <h3 class="masthead-brand">新闻信息整合推荐网站</h3>
+                    <h3 class="masthead-brand">新闻分类推荐网站(四川大学)</h3>
                     <nav>
                         <ul class="nav masthead-nav">
                             <li class="active"><a href="title.jsp">Home</a></li>
@@ -33,7 +33,7 @@
 
             <div class="inner cover">
                 <h1 class="cover-beading">NewsHub</h1>
-                <p class="lead">新闻分类网站——demo</p>
+                <p class="lead">现代软件工程课程设计</p>
                 <p class="lead">
                     <a href="signin.jsp" class="btn btn-lg btn-default">Sign in</a>
                 </p>
@@ -41,14 +41,13 @@
 
             <div class="mastfoot">
                 <div class="inner">
-                    <p>Cover template for <a href="http://getbootstrap.com">Bootstrap</a>
+                    <p>Designers: 现代软件工程课程设计第8组      <a href="https://github.com/fucknamel/NewsHub">Github</a>
                 </div>
             </div>
 
         </div>
     </div>
 </div>
-<script src="../js/userAjax.js?ver=1"></script>
 <%-- Bootstrap --%>
 <script src="../js/jquery-3.3.1.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
